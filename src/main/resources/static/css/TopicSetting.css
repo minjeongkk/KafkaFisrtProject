@@ -1,0 +1,28 @@
+.container{
+    margin:0px;
+}
+
+#buttons{
+    position:absolute;
+    top:100px;
+    left:70%;
+}
+
+#buttons button{
+    background-color: white;
+    border-color: #0f172a;
+    border-style: solid;
+    font-weight: bold;
+    color: #0f172a;
+    margin:5px;
+}
+
+#boardListTable{
+    position:absolute;
+    top:180px;
+    left:50%;
+    right:50%;
+    transform: translate(-50%, 0);
+    width:80%;
+    table-layout: fixed;
+}
