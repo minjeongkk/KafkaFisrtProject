@@ -17,7 +17,8 @@
     margin:5px;
 }
 
-#boardListTable{
+
+#TopicListTable{
     position:absolute;
     top:180px;
     left:50%;
@@ -25,4 +26,97 @@
     transform: translate(-50%, 0);
     width:80%;
     table-layout: fixed;
+}
+
+
+.popup_layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.popup_box {
+    position : relative;
+    height: 550px;
+    width: 850px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top : 50%;
+    bottom : 50%;
+    left:50%;
+    right:50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-style: solid;
+    border-width:1px;
+    border-color:#0f172a;
+}
+
+.popup_cont{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.popupForm{
+    position:absolute;
+    top:70px;
+    height: calc(100% - 70px);
+    width: 80%;
+    left:50%;
+    right:50%;
+    transform: translate(-50%, 0);
+}
+
+.title{
+    position:absolute;
+    top : 10px;
+    left : 20px;
+    font-weight: bold;
+    font-size:20px;
+    display: inline-block;
+    width:300px;
+}
+
+.form-group{
+    margin:10px;
+}
+
+#saveBtn{
+    position: absolute;
+    left : 85%;
+    top : 400px;
+    width:80px;
+    background-color: white;
+    border-color: #0f172a;
+    border-style: solid;
+    font-weight: bold;
+    color: #0f172a;
+}
+
+#editBtn{
+    position: absolute;
+    left : 85%;
+    top : 400px;
+    width:80px;
+    background-color: white;
+    border-color: #0f172a;
+    border-style: solid;
+    font-weight: bold;
+    color: #0f172a;
+}
+
+.form-group label{
+    display: inline-block;
+    width:200px;
+}
+
+.form-group div{
+    display: inline-block;
+    width:450px;
 }

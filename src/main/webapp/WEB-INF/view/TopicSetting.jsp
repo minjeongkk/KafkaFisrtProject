@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/Main.css">
     <link rel="stylesheet" href="/css/TopicSetting.css">
     <script type="text/javascript" src="/javascript/Main.js"></script>
+    <script type="text/javascript" src="/javascript/TopicSetting.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
@@ -23,7 +24,7 @@
             <button class="btn btn-primary" id="delete"  type="button">Delete</button>
         </div>
     </div>
-    <table class="table" id = "boardListTable">
+    <table class="table" id = "TopicListTable">
         <thead class="thead-light">
         <tr class="text-center">
             <th scope="col">Topic Name</th>
@@ -37,6 +38,87 @@
         </tbody>
     </table>
 </div>
+
+<div class="popup_layer" id="popup_layer_new" style="display: none;">
+    <div class="popup_box">
+        <!--팝업 컨텐츠 영역-->
+        <div class="popup_cont">
+            <div class="title">New Topic</div>
+            <form class="popupForm" id = "postForm" action="/saveTopic" method="post">
+                <div class="form-group row">
+                    <label for="inputTopic" class="col-sm-2 col-form-label"><strong>Topic Name</strong></label>
+                    <div class="col-sm-10">
+                        <input type="text" name="topicName" class="form-control" id="inputTopic"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputMonitoring" class="col-sm-2 col-form-label"><strong>Monitoring Name</strong></label>
+                    <div class="col-sm-10">
+                        <input type="text" name="monitoringName" class="form-control" id="inputMonitoring"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputIP" class="col-sm-2 col-form-label"><strong>IP Address</strong></label>
+                    <div class="col-sm-10">
+                        <textarea type="text" name="IP" class="form-control" id="inputIP"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPort" class="col-sm-2 col-form-label"><strong>Port</strong></label>
+                    <div class="col-sm-10">
+                        <textarea type="text" name="port" class="form-control" id="inputPort"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <input class="btn btn-primary" id="saveBtn" type="submit" role="button" value="Save"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="popup_layer" id="popup_layer_edit" style="display: none;">
+    <div class="popup_box">
+        <!--팝업 컨텐츠 영역-->
+        <div class="popup_cont">
+            <div class="title">Edit Topic</div>
+            <form class="popupForm" id = "editForm" action="/editTopic" method="post">
+                <div class="form-group row">
+                    <label for="inputTopic" class="col-sm-2 col-form-label"><strong>Topic Name</strong></label>
+                    <div class="col-sm-10">
+                        <input type="text" name="topicName" class="form-control" id="editTopic"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputMonitoring" class="col-sm-2 col-form-label"><strong>Monitoring Name</strong></label>
+                    <div class="col-sm-10">
+                        <input type="text" name="monitoringName" class="form-control" id="editMonitoring"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputIP" class="col-sm-2 col-form-label"><strong>IP Address</strong></label>
+                    <div class="col-sm-10">
+                        <textarea type="text" name="IP" class="form-control" id="editIP"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPort" class="col-sm-2 col-form-label"><strong>Port</strong></label>
+                    <div class="col-sm-10">
+                        <textarea type="text" name="port" class="form-control" id="editPort"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <input class="btn btn-primary" id="editBtn" type="submit" role="button" value="Save"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
 
