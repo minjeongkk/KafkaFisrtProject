@@ -1,30 +1,30 @@
-.container{
-    margin:0px;
+.container {
+    margin: 0px;
 }
 
-#buttons{
-    position:absolute;
-    top:100px;
-    left:70%;
+#buttons {
+    position: absolute;
+    top: 100px;
+    left: 70%;
 }
 
-#buttons button{
+#buttons button {
     background-color: white;
     border-color: #0f172a;
     border-style: solid;
     font-weight: bold;
     color: #0f172a;
-    margin:5px;
+    margin: 5px;
 }
 
 
-#TopicListTable{
-    position:absolute;
-    top:180px;
-    left:50%;
-    right:50%;
+#TopicListTable {
+    position: absolute;
+    top: 180px;
+    left: 50%;
+    right: 50%;
     transform: translate(-50%, 0);
-    width:80%;
+    width: 80%;
     table-layout: fixed;
 }
 
@@ -41,57 +41,57 @@
 }
 
 .popup_box {
-    position : relative;
+    position: relative;
     height: 550px;
     width: 850px;
     background-size: contain;
     background-repeat: no-repeat;
-    top : 50%;
-    bottom : 50%;
-    left:50%;
-    right:50%;
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
     border-style: solid;
-    border-width:1px;
-    border-color:#0f172a;
+    border-width: 1px;
+    border-color: #0f172a;
 }
 
-.popup_cont{
-    position:absolute;
+.popup_cont {
+    position: absolute;
     height: 100%;
     width: 100%;
 }
 
-.popupForm{
-    position:absolute;
-    top:70px;
+.popupForm {
+    position: absolute;
+    top: 70px;
     height: calc(100% - 70px);
     width: 80%;
-    left:50%;
-    right:50%;
+    left: 50%;
+    right: 50%;
     transform: translate(-50%, 0);
 }
 
-.title{
-    position:absolute;
-    top : 10px;
-    left : 20px;
-    font-weight: bold;
-    font-size:20px;
-    display: inline-block;
-    width:300px;
-}
-
-.form-group{
-    margin:10px;
-}
-
-#saveBtn{
+.title {
     position: absolute;
-    left : 85%;
-    top : 400px;
-    width:80px;
+    top: 10px;
+    left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    display: inline-block;
+    width: 300px;
+}
+
+.form-group {
+    margin: 10px;
+}
+
+#saveBtn {
+    position: absolute;
+    left: 85%;
+    top: 400px;
+    width: 80px;
     background-color: white;
     border-color: #0f172a;
     border-style: solid;
@@ -99,11 +99,11 @@
     color: #0f172a;
 }
 
-#editBtn{
+#editBtn {
     position: absolute;
-    left : 85%;
-    top : 400px;
-    width:80px;
+    left: 85%;
+    top: 400px;
+    width: 80px;
     background-color: white;
     border-color: #0f172a;
     border-style: solid;
@@ -111,12 +111,12 @@
     color: #0f172a;
 }
 
-.form-group label{
+.form-group label {
     display: inline-block;
-    width:200px;
+    width: 200px;
 }
 
-.form-group div{
+.form-group div {
     display: inline-block;
-    width:450px;
+    width: 450px;
 }

@@ -3,19 +3,19 @@
     padding: 0px;
 }
 
-.nav{
+.nav {
     background-color: #0f172a;
     width: 100%;
-    height:70px;
+    height: 70px;
 }
 
-.nav .container{
-    margin-left:50px;
+.nav .container {
+    margin-left: 50px;
 }
 
 .nav ul li {
-    maring-left:200px;
-    margin-top:20px;
+    maring-left: 200px;
+    margin-top: 20px;
     display: inline-block;
     width: 200px;
 }
@@ -23,7 +23,7 @@
 .nav ul li a {
     color: #ffffff;
     font-weight: bold;
-    font-size:18px;
+    font-size: 18px;
     height: 20px;
     text-decoration: none;
 }

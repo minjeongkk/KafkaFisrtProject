@@ -1,3 +1,3 @@
-function changePage(page){
+function changePage(page) {
     $("#page").load(page);
 }
