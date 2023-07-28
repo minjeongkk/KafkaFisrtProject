@@ -62,7 +62,7 @@
                 <div class="form-group row">
                     <label for="inputIP" class="col-sm-2 col-form-label"><strong>IP Address</strong></label>
                     <div class="col-sm-10">
-                        <textarea type="text" name="IP" class="form-control" id="inputIP"></textarea>
+                        <textarea type="text" name="ip" class="form-control" id="inputIP"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -103,7 +103,7 @@
                 <div class="form-group row">
                     <label for="inputIP" class="col-sm-2 col-form-label"><strong>IP Address</strong></label>
                     <div class="col-sm-10">
-                        <textarea type="text" name="IP" class="form-control" id="editIP"></textarea>
+                        <textarea type="text" name="ip" class="form-control" id="editIP"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">

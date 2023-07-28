@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.firstProject.repository.TopicMapper">
+    <insert id="saveTopic" parameterType="com.example.firstProject.entity.Topic">
+        INSERT INTO topic(topic_name, monitoring_name, ip, port, status)
+        VALUES (#{topic.topicName}, #{topic.monitoringName}, #{topic.ip}, #{topic.port}, #{topic.status})
+    </insert>
+    <select id="getAllTopic" resultType="com.example.firstProject.entity.Topic">
+        SELECT topic_name AS topicName, monitoring_name AS monitoringName, ip, port, status
+        FROM topic
+        ORDER BY id desc;
+    </select>
+</mapper>

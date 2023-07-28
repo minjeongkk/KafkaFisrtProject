@@ -28,6 +28,11 @@
     table-layout: fixed;
 }
 
+th, td {
+    text-align: center;
+    height: 45px;
+}
+
 
 .popup_layer {
     position: fixed;
