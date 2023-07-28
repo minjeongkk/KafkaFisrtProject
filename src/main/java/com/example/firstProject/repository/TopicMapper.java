@@ -16,4 +16,13 @@ public interface TopicMapper {
 
     // 토픽 전체 조회
     public List<Topic> getAllTopic();
+
+    // 토픽 id로 조회
+    public Topic getTopicById(Long id);
+
+    // 토픽 삭제
+    public Long deleteTopic(Long id);
+
+    // 토픽 수정
+    public Long updateTopic(@Param("topic") Topic topic);
 }

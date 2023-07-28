@@ -6,8 +6,22 @@
         VALUES (#{topic.topicName}, #{topic.monitoringName}, #{topic.ip}, #{topic.port}, #{topic.status})
     </insert>
     <select id="getAllTopic" resultType="com.example.firstProject.entity.Topic">
-        SELECT topic_name AS topicName, monitoring_name AS monitoringName, ip, port, status
+        SELECT id, topic_name AS topicName, monitoring_name AS monitoringName, ip, port, status
         FROM topic
         ORDER BY id desc;
     </select>
+    <select id="getTopicById" parameterType="Long" resultType="com.example.firstProject.entity.Topic">
+        SELECT id, topic_name AS topicName, monitoring_name AS monitoringName, ip, port, status
+        FROM topic
+        WHERE id = #{id};
+    </select>
+    <delete id="deleteTopic" parameterType="Long">
+        DELETE FROM topic
+        WHERE id = #{id}
+    </delete>
+    <update id="updateTopic" parameterType="com.example.firstProject.entity.Topic">
+        UPDATE topic
+        SET topic_name= #{topic.topicName}, monitoring_name= #{topic.monitoringName} , ip = #{topic.ip}, port = #{topic.port}
+        WHERE id = #{topic.id}
+    </update>
 </mapper>

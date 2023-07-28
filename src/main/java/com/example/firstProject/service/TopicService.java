@@ -26,7 +26,6 @@ public class TopicService {
     @Transactional
     public List<TopicDto> getAllTopic() {
         List<Topic> topicList = topicMapper.getAllTopic();
-        System.out.println("topic list !!!!" + topicList.get(0).getTopicName());
         List<TopicDto> topicDtoList = new ArrayList<>();
 
         for (Topic topic : topicList) {
@@ -41,5 +40,31 @@ public class TopicService {
             topicDtoList.add(topicDto);
         }
         return topicDtoList;
+    }
+
+    @Transactional
+    public Long deleteTopic(Long id){
+        topicMapper.deleteTopic(id);
+        return id;
+    }
+
+    @Transactional
+    public Long updateTopic(Long id, TopicDto topicDto){
+        topicDto.setId(id);
+        topicMapper.updateTopic(topicDto.toEntity());
+        return topicDto.getId();
+    }
+
+    public TopicDto findById(Long id){
+        Topic topic = topicMapper.getTopicById(id);
+        TopicDto topicDto = TopicDto.builder()
+                .id(topic.getId())
+                .topicName(topic.getTopicName())
+                .monitoringName(topic.getMonitoringName())
+                .ip(topic.getIp())
+                .port(topic.getPort())
+                .status(topic.getStatus())
+                .build();
+        return topicDto;
     }
 }

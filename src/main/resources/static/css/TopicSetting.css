@@ -33,6 +33,10 @@ th, td {
     height: 45px;
 }
 
+table tbody tr:hover {
+    background-color: lightgray;
+    cursor:pointer;
+}
 
 .popup_layer {
     position: fixed;

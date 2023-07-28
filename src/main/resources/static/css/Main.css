@@ -10,6 +10,8 @@
 }
 
 .nav .container {
+    position : absolute;
+    left : 10%;
     margin-left: 50px;
 }
 

@@ -12,19 +12,75 @@ $.ajax({
     }
 })
 
+var num = "";
+function tableClick(no){
+    console.log(no);
+    num = no;
+}
+$(document).ready(function () {
+    $("#new").click(function () {
+        $("#popup_layer_new").css("display", "block");
+        $("form").submit(function(e) {
+            e.preventDefault(); // avoid to execute the actual submit of the form.
 
-$("#new").click(function () {
-    $("#popup_layer_new").css("display", "block");
-});
+            var form = $(this);
 
-$("#edit").click(function () {
-    $("#popup_layer_edit").css("display", "block");
-});
+            $.ajax({
+                type: "POST",
+                url: "saveTopic",
+                data: form.serialize(), // serializes the form's elements.
+                dataType: 'json',
+                success: function(json)
+                {
+                    console.log("저장 성공");
+                    $("#popup_layer_new").css("display", "none");
+                    $("#page").load("TopicSetting");
+                }
+            });
+        });
+    });
+    $("#delete").click(function(){
+        $.ajax({
+            url: "delete/"+num,
+            type: "GET",
+            success: function (result) {
+                alert("삭제되었습니다.");
+                $("#page").load("TopicSetting");
+            }
+        })
+    });
+    $("#edit").click(function(){
+        $("#popup_layer_edit").css("display", "block");
+        $.ajax({
+            url: "edit/"+num,
+            type : "GET",
+            success: function (result) {
+                console.log(result);
+                $("#editTopic").val(result.topicName);
+                $("#editMonitoring").val(result.monitoringName);
+                $("#editIP").val(result.ip);
+                $("#editPort").val(result.port);
 
-$("#saveBtn").click(function () {
-    $("#popup_layer_new").css("display", "none");
-});
+            }
+        })
+        $("form").submit(function(e) {
+            e.preventDefault(); // avoid to execute the actual submit of the form.
 
-$("#editBtn").click(function () {
-    $("#popup_layer_edit").css("display", "none");
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                type: "POST",
+                url: "edit/"+num,
+                data: form.serialize(), // serializes the form's elements.
+                dataType: 'json',
+                success: function(json)
+                {
+                    console.log("수정 성공");
+                    $("#popup_layer_edit").css("display", "none");
+                    $("#page").load("TopicSetting");
+                }
+            });
+        });
+    });
 });

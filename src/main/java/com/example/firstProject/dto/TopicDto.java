@@ -24,7 +24,7 @@ public class TopicDto {
                 .monitoringName(monitoringName)
                 .ip(ip)
                 .port(port)
-                .status(Status.STOPPED)
+                .status(Status.Stopped)
                 .build();
         return topic;
     }

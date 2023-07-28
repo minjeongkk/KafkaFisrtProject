@@ -86,7 +86,7 @@
         <!--팝업 컨텐츠 영역-->
         <div class="popup_cont">
             <div class="title">Edit Topic</div>
-            <form class="popupForm" id="editForm" action="/editTopic" method="post">
+            <form class="popupForm" id="editForm" action="edit/" method="post">
                 <div class="form-group row">
                     <label for="inputTopic" class="col-sm-2 col-form-label"><strong>Topic Name</strong></label>
                     <div class="col-sm-10">
