@@ -14,8 +14,10 @@ $.ajax({
 
 var num = "";
 function tableClick(no){
+    $("table tbody tr").css("background-color", "white");
     console.log(no);
     num = no;
+    $("#"+no).css("background-color", "lightgray");
 }
 $(document).ready(function () {
     $("#new").click(function () {

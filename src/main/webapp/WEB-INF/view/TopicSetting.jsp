@@ -18,8 +18,8 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-auto" id="buttons">
+    <div class="row" id="buttons">
+        <div class="col-auto">
             <button class="btn btn-primary" id="new" type="button">New</button>
             <button class="btn btn-primary" id="edit" type="button">Edit</button>
             <button class="btn btn-primary" id="delete" type="button">Delete</button>
@@ -62,18 +62,18 @@
                 <div class="form-group row">
                     <label for="inputIP" class="col-sm-2 col-form-label"><strong>IP Address</strong></label>
                     <div class="col-sm-10">
-                        <textarea type="text" name="ip" class="form-control" id="inputIP"></textarea>
+                        <input type="text" name="ip" class="form-control" id="inputIP">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPort" class="col-sm-2 col-form-label"><strong>Port</strong></label>
                     <div class="col-sm-10">
-                        <textarea type="text" name="port" class="form-control" id="inputPort"></textarea>
+                        <input type="text" name="port" class="form-control" id="inputPort">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-auto">
-                        <input class="btn btn-primary" id="saveBtn" type="submit" role="button" value="Save"/>
+                        <button class="btn btn-primary" id="saveBtn" type="submit" role="button" value="Save">Save</button>
                     </div>
                 </div>
             </form>
@@ -103,18 +103,18 @@
                 <div class="form-group row">
                     <label for="inputIP" class="col-sm-2 col-form-label"><strong>IP Address</strong></label>
                     <div class="col-sm-10">
-                        <textarea type="text" name="ip" class="form-control" id="editIP"></textarea>
+                        <input type="text" name="ip" class="form-control" id="editIP">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPort" class="col-sm-2 col-form-label"><strong>Port</strong></label>
                     <div class="col-sm-10">
-                        <textarea type="text" name="port" class="form-control" id="editPort"></textarea>
+                        <input type="text" name="port" class="form-control" id="editPort">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-auto">
-                        <input class="btn btn-primary" id="editBtn" type="submit" role="button" value="Save"/>
+                        <button class="btn btn-primary" id="editBtn" type="submit" role="button" value="Save">Save</button>
                     </div>
                 </div>
             </form>

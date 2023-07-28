@@ -5,7 +5,7 @@
 #buttons {
     position: absolute;
     top: 100px;
-    left: 70%;
+    right:10%;
 }
 
 #buttons button {
@@ -31,6 +31,7 @@
 th, td {
     text-align: center;
     height: 45px;
+
 }
 
 table tbody tr:hover {
@@ -94,6 +95,10 @@ table tbody tr:hover {
 
 .form-group {
     margin: 10px;
+}
+
+input{
+    outline: 0.5px solid black;
 }
 
 #saveBtn {
