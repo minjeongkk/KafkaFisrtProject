@@ -1,11 +1,14 @@
-.container {
-    margin: 0px;
+.page_container {
+    position: absolute;
+    padding: 0;
+    height: calc(100% - 70px);
+    width: 100%;
 }
 
 #buttons {
     position: absolute;
-    top: 100px;
-    right:10%;
+    top: 50px;
+    right: 10%;
 }
 
 #buttons button {
@@ -20,7 +23,7 @@
 
 #TopicListTable {
     position: absolute;
-    top: 180px;
+    top: 130px;
     left: 50%;
     right: 50%;
     transform: translate(-50%, 0);
@@ -36,7 +39,7 @@ th, td {
 
 table tbody tr:hover {
     background-color: lightgray;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .popup_layer {
@@ -97,7 +100,7 @@ table tbody tr:hover {
     margin: 10px;
 }
 
-input{
+input {
     outline: 0.5px solid black;
 }
 

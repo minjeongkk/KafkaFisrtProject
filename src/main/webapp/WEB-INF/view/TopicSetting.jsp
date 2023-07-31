@@ -17,7 +17,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container">
+<div class="page_container">
     <div class="row" id="buttons">
         <div class="col-auto">
             <button class="btn btn-primary" id="new" type="button">New</button>
@@ -73,7 +73,8 @@
                 </div>
                 <div class="row">
                     <div class="col-auto">
-                        <button class="btn btn-primary" id="saveBtn" type="submit" role="button" value="Save">Save</button>
+                        <button class="btn btn-primary" id="saveBtn" type="submit" role="button" value="Save">Save
+                        </button>
                     </div>
                 </div>
             </form>
@@ -114,7 +115,8 @@
                 </div>
                 <div class="row">
                     <div class="col-auto">
-                        <button class="btn btn-primary" id="editBtn" type="submit" role="button" value="Save">Save</button>
+                        <button class="btn btn-primary" id="editBtn" type="submit" role="button" value="Save">Save
+                        </button>
                     </div>
                 </div>
             </form>

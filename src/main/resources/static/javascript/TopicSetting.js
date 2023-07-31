@@ -13,16 +13,18 @@ $.ajax({
 })
 
 var num = "";
-function tableClick(no){
+
+function tableClick(no) {
     $("table tbody tr").css("background-color", "white");
     console.log(no);
     num = no;
-    $("#"+no).css("background-color", "lightgray");
+    $("#" + no).css("background-color", "lightgray");
 }
+
 $(document).ready(function () {
     $("#new").click(function () {
         $("#popup_layer_new").css("display", "block");
-        $("form").submit(function(e) {
+        $("form").submit(function (e) {
             e.preventDefault(); // avoid to execute the actual submit of the form.
 
             var form = $(this);
@@ -32,8 +34,7 @@ $(document).ready(function () {
                 url: "saveTopic",
                 data: form.serialize(), // serializes the form's elements.
                 dataType: 'json',
-                success: function(json)
-                {
+                success: function (json) {
                     console.log("저장 성공");
                     $("#popup_layer_new").css("display", "none");
                     $("#page").load("TopicSetting");
@@ -41,9 +42,9 @@ $(document).ready(function () {
             });
         });
     });
-    $("#delete").click(function(){
+    $("#delete").click(function () {
         $.ajax({
-            url: "delete/"+num,
+            url: "delete/" + num,
             type: "GET",
             success: function (result) {
                 alert("삭제되었습니다.");
@@ -51,11 +52,11 @@ $(document).ready(function () {
             }
         })
     });
-    $("#edit").click(function(){
+    $("#edit").click(function () {
         $("#popup_layer_edit").css("display", "block");
         $.ajax({
-            url: "edit/"+num,
-            type : "GET",
+            url: "edit/" + num,
+            type: "GET",
             success: function (result) {
                 console.log(result);
                 $("#editTopic").val(result.topicName);
@@ -65,7 +66,7 @@ $(document).ready(function () {
 
             }
         })
-        $("form").submit(function(e) {
+        $("form").submit(function (e) {
             e.preventDefault(); // avoid to execute the actual submit of the form.
 
             var form = $(this);
@@ -73,11 +74,10 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                url: "edit/"+num,
+                url: "edit/" + num,
                 data: form.serialize(), // serializes the form's elements.
                 dataType: 'json',
-                success: function(json)
-                {
+                success: function (json) {
                     console.log("수정 성공");
                     $("#popup_layer_edit").css("display", "none");
                     $("#page").load("TopicSetting");

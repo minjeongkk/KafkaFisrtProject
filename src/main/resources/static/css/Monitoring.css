@@ -1,0 +1,30 @@
+.page_container {
+    position:absolute;
+    margin:0;
+    padding:0;
+    height: calc(100% - 70px);
+    width: 100%;
+}
+
+#monitoring{
+    margin:0;
+    padding:0;
+    height: calc(100% - 70px);
+}
+
+.topic_left{
+    position : relative;
+    background-color: yellow;
+    top : 20px;
+    width:30%;
+    height:500px;
+    margin : 15px;
+}
+.topic_right{
+    position : relative;
+    background-color: lime;
+    top : 20px;
+    width: 30%;
+    height: 500px;
+    margin : 15px;
+}

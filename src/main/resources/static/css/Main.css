@@ -1,4 +1,6 @@
-* {
+html, body {
+    height: 100%;
+    width: 100%;
     margin: 0px;
     padding: 0px;
 }
@@ -10,8 +12,8 @@
 }
 
 .nav .container {
-    position : absolute;
-    left : 10%;
+    position: absolute;
+    left: 10%;
     margin-left: 50px;
 }
 
@@ -30,3 +32,11 @@
     text-decoration: none;
 }
 
+#page {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    height: calc(100% - 70px);
+    width: 100vw;
+    overflow: scroll;
+}
