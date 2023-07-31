@@ -2,29 +2,33 @@
     position:absolute;
     margin:0;
     padding:0;
-    height: calc(100% - 70px);
+    height: 100%;
     width: 100%;
+    overflow: scroll;
 }
 
 #monitoring{
     margin:0;
     padding:0;
-    height: calc(100% - 70px);
+    height: 100%;
 }
 
-.topic_left{
-    position : relative;
-    background-color: yellow;
-    top : 20px;
-    width:30%;
-    height:500px;
-    margin : 15px;
+#monitoringTable{
+    position:absolute;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap : wrap;
+    width : 82%;
+    height: calc(100% - 70px);
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, 0);
+
 }
-.topic_right{
-    position : relative;
-    background-color: lime;
-    top : 20px;
-    width: 30%;
-    height: 500px;
-    margin : 15px;
+
+.topic{
+    background-color: yellow;
+    width : 45%;
+    height : 45%;
+    margin : 10px;
 }

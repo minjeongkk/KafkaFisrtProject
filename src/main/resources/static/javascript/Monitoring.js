@@ -7,9 +7,9 @@ $.ajax({
         var i = 0;
         result.forEach(function (item) {
             if (i % 2 == 0) {
-                html += "<div class='topic_left'>" + item.id + "</div>";
+                html += "<div class='topic'>" + item.id + "</div>";
             } else {
-                html += "<div class='topic_right'>" + item.id + "</div>";
+                html += "<div class='topic'>" + item.id + "</div>";
             }
             i += 1;
             // html += "<div class='topic'> item.id </div>";

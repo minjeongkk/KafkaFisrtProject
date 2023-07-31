@@ -23,7 +23,7 @@
         </ul>
     </div>
 </div>
-<div class="page_container" id="page">
+<div id="page">
 </div>
 </body>
 </html>

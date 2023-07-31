@@ -38,5 +38,5 @@ html, body {
     padding: 0;
     height: calc(100% - 70px);
     width: 100vw;
-    overflow: scroll;
+    overflow: hidden;
 }
