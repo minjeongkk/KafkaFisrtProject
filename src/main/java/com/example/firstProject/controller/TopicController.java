@@ -73,4 +73,5 @@ public class TopicController {
         Long topicId = topicService.updateTopic(id, topicDto);
         return new ResponseEntity<>(topicId, HttpStatus.OK);
     }
+
 }

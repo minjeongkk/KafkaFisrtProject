@@ -1,6 +1,7 @@
 package com.example.firstProject.service;
 
 import com.example.firstProject.dto.TopicDto;
+import com.example.firstProject.entity.Status;
 import com.example.firstProject.entity.Topic;
 import com.example.firstProject.repository.TopicMapper;
 import jakarta.transaction.Transactional;
@@ -19,6 +20,7 @@ public class TopicService {
     // 토픽 저장
     @Transactional
     public Long saveTopic(TopicDto topicDto) {
+        topicDto.setStatus(Status.Stopped);
         return topicMapper.saveTopic(topicDto.toEntity());
     }
 
@@ -42,12 +44,14 @@ public class TopicService {
         return topicDtoList;
     }
 
+    // 토픽 삭제
     @Transactional
     public Long deleteTopic(Long id){
         topicMapper.deleteTopic(id);
         return id;
     }
 
+    // 토픽 수정
     @Transactional
     public Long updateTopic(Long id, TopicDto topicDto){
         topicDto.setId(id);
@@ -55,6 +59,7 @@ public class TopicService {
         return topicDto.getId();
     }
 
+    // 토픽 id로 찾기
     public TopicDto findById(Long id){
         Topic topic = topicMapper.getTopicById(id);
         TopicDto topicDto = TopicDto.builder()
@@ -66,5 +71,13 @@ public class TopicService {
                 .status(topic.getStatus())
                 .build();
         return topicDto;
+    }
+
+    // 토픽 상태 변경
+    public Long updateStatus(Long id, TopicDto topicDto, Status status) {
+        topicDto.setId(id);
+        topicDto.setStatus(status);
+        topicMapper.updateStatus(topicDto.toEntity());
+        return topicDto.getId();
     }
 }

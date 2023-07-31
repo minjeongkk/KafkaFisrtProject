@@ -24,4 +24,9 @@
         SET topic_name= #{topic.topicName}, monitoring_name= #{topic.monitoringName} , ip = #{topic.ip}, port = #{topic.port}
         WHERE id = #{topic.id}
     </update>
+    <update id="updateStatus" parameterType="com.example.firstProject.entity.Topic">
+        UPDATE topic
+        SET status = #{topic.status}
+        WHERE id = #{topic.id}
+    </update>
 </mapper>

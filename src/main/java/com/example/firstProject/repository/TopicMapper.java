@@ -25,4 +25,7 @@ public interface TopicMapper {
 
     // 토픽 수정
     public Long updateTopic(@Param("topic") Topic topic);
+
+    // 토픽 상태 수정
+    public Long updateStatus(@Param("topic") Topic topic);
 }

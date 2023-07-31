@@ -12,16 +12,22 @@ import java.util.Collections;
 import java.util.Properties;
 
 public class ConsumerService {
-    private static final String bootstrapServer = "192.168.0.142:9092";
-    private static final String topicName = "number";
+    private static String bootstrapServerIp = "";
+    private static String bootstrapServerPort = "";
+    private static String topicName = "";
     private static final String GROUP_ID = "Consumer1";
 
     private static KafkaConsumer<String, String> consumer;
 
-    public void subscribe(){
+    // 구독
+    public void subscribe(String ip, String port, String topic){
+        bootstrapServerIp = ip;
+        bootstrapServerPort = port;
+        topicName = topic;
+
         // consumer properties
         Properties properties = new Properties();
-        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
+        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServerIp+":"+bootstrapServerPort);
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
@@ -32,6 +38,7 @@ public class ConsumerService {
         consumer.subscribe(Collections.singletonList(topicName));
     }
 
+    // 조회
     public ArrayList test(){
         // 데이터를 받아서 출력
         try{
@@ -48,6 +55,7 @@ public class ConsumerService {
         }
     }
 
+    // 중지
     public void stop(){
         consumer.close();
     }
