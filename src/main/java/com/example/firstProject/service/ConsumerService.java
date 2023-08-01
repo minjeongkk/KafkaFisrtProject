@@ -15,7 +15,7 @@ public class ConsumerService {
     private static String bootstrapServerIp = "";
     private static String bootstrapServerPort = "";
     private static String topicName = "";
-    private static final String GROUP_ID = "Consumer1";
+    private static final String GROUP_ID = "null";
 
     private static KafkaConsumer<String, String> consumer;
 
