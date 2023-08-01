@@ -27,8 +27,46 @@
 }
 
 .topic{
-    background-color: yellow;
+    position : relative;
+    border-style: solid;
     width : 45%;
     height : 45%;
     margin : 10px;
+}
+
+.monitoringName{
+    margin-top : 5px;
+    margin-left : 10px;
+    font-size : 20px;
+    font-weight: bold;
+}
+
+.status{
+    margin-top : 5px;
+    margin-left : 5px;
+    font-size : 20px;
+    font-wieght : bold;
+    color:  red;
+}
+
+#buttons {
+    position: absolute;
+    top: 5px;
+    right: 5%;
+}
+
+#buttons button {
+    background-color: white;
+    border-color: #0f172a;
+    border-style: solid;
+    font-weight: bold;
+    color: #0f172a;
+    margin: 5px;
+}
+
+#MonitoringListTable{
+    position: absolute;
+    width : 90%;
+    left : 5%;
+    top : 60px;
 }
