@@ -7,7 +7,7 @@ $(document).ready(function () {
             var html = "";
             result.forEach(function (item) {
                 var setStatus = "STOPPED";
-                if (item.status == 'Running'){
+                if (item.status == 'Running') {
                     setStatus = "RUNNING";
                 }
                 html += "<div class='topic' id='" + item.id + "'>" +
@@ -31,44 +31,45 @@ $(document).ready(function () {
                     "</tbody>" +
                     "</table>" +
                     "</div>";
-                if(setStatus=="RUNNING"){
-                    $("#"+item.id+"_status").css("color","green");
-                }
             })
             $("#monitoringTable").append(html);
+            $('[id*=status]').each(function (index, item) {
+                console.log(item);
+                if ($("#" + item.id).text() == 'RUNNING') {
+                    $("#" + item.id).attr('style', 'color: green');
+                }
+            });
         }
     })
 });
 
-function subscribeTopic(id){
+function subscribeTopic(id) {
     var sendId = parseInt(id.split('_')[0])
     $.ajax({
-        url: "subscribe1/"+sendId,
+        url: "subscribe1/" + sendId,
         success: function (result) {
-            console.log(result);
-            console.log("#"+sendId+"_status");
-            $("#"+sendId+"_status").css("color","green");
-            $("#"+sendId+"_status").text("RUNNING");
+            $("#" + sendId + "_status").css("color", "green");
+            $("#" + sendId + "_status").text("RUNNING");
         }
     })
 }
 
-function stopTopic(id){
+function stopTopic(id) {
     var sendId = parseInt(id.split('_')[0])
     $.ajax({
-        url: "stop1/"+sendId,
+        url: "stop1/" + sendId,
         success: function (result) {
             console.log(result);
-            $("#"+sendId+"_status").css("color","red");
-            $("#"+sendId+"_status").text("STOPPED");
+            $("#" + sendId + "_status").css("color", "red");
+            $("#" + sendId + "_status").text("STOPPED");
         }
     })
 }
 
-function searchTopic(id){
+function searchTopic(id) {
     var sendId = parseInt(id.split('_')[0])
     $.ajax({
-        url: "getData1/"+sendId,
+        url: "getData1/" + sendId,
         success: function (result) {
             console.log(result);
             var html = "";
