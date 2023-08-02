@@ -73,10 +73,17 @@ function searchTopic(id) {
         success: function (result) {
             console.log(result);
             var html = "";
-            for(var i = 0; i < result.length; i++) {
-                html += "<tr> <td> # </td><td>" + result[i] + "</td></tr>";
+            if (result.length > 0) {
+                $("#" + sendId + "_listArea").empty();
+                var len = 0;
+                if (result.length>=6){
+                    len = result.length - 6;
+                }
+                for (var i = result.length - 1; i >= len; i--) {
+                    html += "<tr> <td> # </td><td>" + result[i] + "</td></tr>";
+                }
             }
-            $("#"+sendId+"_listArea").append(html);
+            $("#" + sendId + "_listArea").append(html);
         }
     })
 }
