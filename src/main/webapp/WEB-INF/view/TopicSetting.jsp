@@ -76,6 +76,8 @@
                     <div class="col-auto">
                         <button class="btn btn-primary" id="saveBtn" type="submit" role="button" value="Save">Save
                         </button>
+                        <button class="btn btn-primary" id="saveCancelBtn" type="button" role="button" value="Cancel">Cancel
+                        </button>
                     </div>
                 </div>
             </form>
@@ -118,6 +120,8 @@
                 <div class="row">
                     <div class="col-auto">
                         <button class="btn btn-primary" id="editBtn" type="submit" role="button" value="Save">Save
+                        </button>
+                        <button class="btn btn-primary" id="editCancelBtn" type="button" role="button" value="Cancel">Cancel
                         </button>
                     </div>
                 </div>

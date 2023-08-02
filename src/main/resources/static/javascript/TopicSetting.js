@@ -116,4 +116,10 @@ $(document).ready(function () {
             })
         }
     });
+    $("#saveCancelBtn").click(function () {
+        $("#popup_layer_new").css("display", "none");
+    });
+    $("#editCancelBtn").click(function () {
+        $("#popup_layer_edit").css("display", "none");
+    });
 });
