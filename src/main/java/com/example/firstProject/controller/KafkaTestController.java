@@ -16,20 +16,20 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class KafkaController {
-    private HashMap<Integer, ConsumerService> consumerServices =  new HashMap<Integer, ConsumerService>( );
+public class KafkaTestController {
+    private ConsumerTest consumerTest;
     @Autowired
     private TopicService topicService;
 
     // 구독
-    @GetMapping("/subscribe/{id}")
+    @GetMapping("/subscribe1/{id}")
     public String subscribe(@PathVariable Long id){
-
         // 구독 (ip, port, topic이름 전달)
-        int topicId = Integer.parseInt(id.toString());
-        consumerServices.put(topicId, new ConsumerService());
+        if(consumerTest==null){
+            consumerTest = new ConsumerTest();
+        }
         TopicDto topicDto = topicService.findById(id);
-        consumerServices.get(topicId).subscribe(topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
+        consumerTest.subscribe(id, topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
 
         // 토픽 상태 Running으로 변경
         TopicDto topicDto1 = topicService.findById(id);
@@ -39,18 +39,16 @@ public class KafkaController {
     }
 
     // 조회
-    @GetMapping(value="/getData/{id}")
+    @GetMapping(value="/getData1/{id}")
     public ArrayList getMessage(@PathVariable Long id){
-        int topicId = Integer.parseInt(id.toString());
-        return consumerServices.get(topicId).test();
+        return consumerTest.test(id);
     }
 
     // 중지
-    @GetMapping("/stop/{id}")
+    @GetMapping("/stop1/{id}")
     public String stop(@PathVariable Long id){
         // 구독 중지
-        int topicId = Integer.parseInt(id.toString());
-        consumerServices.get(topicId).stop();
+        consumerTest.stop(id);
 
         // 토픽 상태 Stopped로 변경
         TopicDto topicDto1 = topicService.findById(id);

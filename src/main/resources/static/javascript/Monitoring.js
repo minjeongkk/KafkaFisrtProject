@@ -43,7 +43,7 @@ $(document).ready(function () {
 function subscribeTopic(id){
     var sendId = parseInt(id.split('_')[0])
     $.ajax({
-        url: "subscribe/"+sendId,
+        url: "subscribe1/"+sendId,
         success: function (result) {
             console.log(result);
             console.log("#"+sendId+"_status");
@@ -56,7 +56,7 @@ function subscribeTopic(id){
 function stopTopic(id){
     var sendId = parseInt(id.split('_')[0])
     $.ajax({
-        url: "stop/"+sendId,
+        url: "stop1/"+sendId,
         success: function (result) {
             console.log(result);
             $("#"+sendId+"_status").css("color","red");
@@ -68,7 +68,7 @@ function stopTopic(id){
 function searchTopic(id){
     var sendId = parseInt(id.split('_')[0])
     $.ajax({
-        url: "getData/"+sendId,
+        url: "getData1/"+sendId,
         success: function (result) {
             console.log(result);
             var html = "";
