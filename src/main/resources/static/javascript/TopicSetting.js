@@ -59,41 +59,61 @@ $(document).ready(function () {
         })
     });
     $("#edit").click(function () {
-        $("#popup_layer_edit").css("display", "block");
-        $.ajax({
-            url: "edit/" + num,
-            type: "GET",
-            success: function (result) {
-                console.log(result);
-                $("#editTopic").val(result.topicName);
-                $("#editMonitoring").val(result.monitoringName);
-                $("#editIP").val(result.ip);
-                $("#editPort").val(result.port);
-
-            }
-        })
-        $("form").submit(function (e) {
-            e.preventDefault(); // avoid to execute the actual submit of the form.
-
-            if ($("#editTopic").val().trim() == "" || $("#editMonitoring").val().trim() == ""
-                || $("#editIP").val().trim() == "" || $("#editPort").val().trim() == "") {
-                alert("값을 입력해주세요.");
-                e.preventDefault();
-            } else {
-                var form = $(this);
-
-                $.ajax({
-                    type: "POST",
-                    url: "edit/" + num,
-                    data: form.serialize(), // serializes the form's elements.
-                    dataType: 'json',
-                    success: function (json) {
-                        console.log("수정 성공");
-                        $("#popup_layer_edit").css("display", "none");
-                        $("#page").load("TopicSetting");
+        if (num == "") {
+            alert("항목을 선택해주세요.");
+        } else {
+            $.ajax({
+                url: "edit/" + num,
+                type: "GET",
+                success: function (result) {
+                    console.log(result);
+                    if(result.status=="Running"){
+                        alert("구독 중에는 편집할 수 없습니다.");
                     }
-                });
-            }
-        });
+                    else{
+                        $("#popup_layer_edit").css("display", "block");
+                        $.ajax({
+                            url: "edit/" + num,
+                            type: "GET",
+                            success: function (result) {
+                                console.log(result);
+                                $("#editTopic").val(result.topicName);
+                                $("#editMonitoring").val(result.monitoringName);
+                                $("#editIP").val(result.ip);
+                                $("#editPort").val(result.port);
+
+                            }
+                        })
+                        $("form").submit(function (e) {
+                            e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                            if ($("#editTopic").val().trim() == "" || $("#editMonitoring").val().trim() == ""
+                                || $("#editIP").val().trim() == "" || $("#editPort").val().trim() == "") {
+                                alert("값을 입력해주세요.");
+                                e.preventDefault();
+                            } else {
+                                var form = $(this);
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "edit/" + num,
+                                    data: form.serialize(), // serializes the form's elements.
+                                    dataType: 'json',
+                                    success: function (json) {
+                                        console.log("수정 성공");
+                                        $("#popup_layer_edit").css("display", "none");
+                                        $("#page").load("TopicSetting");
+                                    }
+                                    // ,
+                                    // error: function(request,status,error){
+                                    //     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                    // }
+                                });
+                            }
+                        });
+                    }
+                }
+            })
+        }
     });
 });
