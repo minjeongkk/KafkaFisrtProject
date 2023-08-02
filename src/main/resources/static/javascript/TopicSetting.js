@@ -27,20 +27,26 @@ $(document).ready(function () {
         $("form").submit(function (e) {
             e.preventDefault(); // avoid to execute the actual submit of the form.
 
-            var form = $(this);
-
-            $.ajax({
-                type: "POST",
-                url: "saveTopic",
-                data: form.serialize(), // serializes the form's elements.
-                dataType: 'json',
-                success: function (json) {
-                    console.log("저장 성공");
-                    $("#popup_layer_new").css("display", "none");
-                    $("#page").load("TopicSetting");
-                }
-            });
+            if ($("#inputTopic").val().trim() == "" || $("#inputMonitoring").val().trim() == ""
+                || $("#inputIP").val().trim() == "" || $("#inputPort").val().trim() == "") {
+                alert("값을 입력해주세요.");
+                e.preventDefault();
+            } else {
+                var form = $(this);
+                $.ajax({
+                    type: "POST",
+                    url: "saveTopic",
+                    data: form.serialize(), // serializes the form's elements.
+                    dataType: 'json',
+                    success: function (json) {
+                        console.log("저장 성공");
+                        $("#popup_layer_new").css("display", "none");
+                        $("#page").load("TopicSetting");
+                    }
+                });
+            }
         });
+
     });
     $("#delete").click(function () {
         $.ajax({
@@ -69,20 +75,25 @@ $(document).ready(function () {
         $("form").submit(function (e) {
             e.preventDefault(); // avoid to execute the actual submit of the form.
 
-            var form = $(this);
-            var url = form.attr('action');
+            if ($("#editTopic").val().trim() == "" || $("#editMonitoring").val().trim() == ""
+                || $("#editIP").val().trim() == "" || $("#editPort").val().trim() == "") {
+                alert("값을 입력해주세요.");
+                e.preventDefault();
+            } else {
+                var form = $(this);
 
-            $.ajax({
-                type: "POST",
-                url: "edit/" + num,
-                data: form.serialize(), // serializes the form's elements.
-                dataType: 'json',
-                success: function (json) {
-                    console.log("수정 성공");
-                    $("#popup_layer_edit").css("display", "none");
-                    $("#page").load("TopicSetting");
-                }
-            });
+                $.ajax({
+                    type: "POST",
+                    url: "edit/" + num,
+                    data: form.serialize(), // serializes the form's elements.
+                    dataType: 'json',
+                    success: function (json) {
+                        console.log("수정 성공");
+                        $("#popup_layer_edit").css("display", "none");
+                        $("#page").load("TopicSetting");
+                    }
+                });
+            }
         });
     });
 });

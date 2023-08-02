@@ -62,13 +62,14 @@
                 <div class="form-group row">
                     <label for="inputIP" class="col-sm-2 col-form-label"><strong>IP Address</strong></label>
                     <div class="col-sm-10">
-                        <input type="text" name="ip" class="form-control" id="inputIP">
+                        <input type="text" name="ip" class="form-control" id="inputIP"
+                               pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPort" class="col-sm-2 col-form-label"><strong>Port</strong></label>
                     <div class="col-sm-10">
-                        <input type="text" name="port" class="form-control" id="inputPort">
+                        <input type="text" name="port" class="form-control" id="inputPort" pattern="[0-9]+">
                     </div>
                 </div>
                 <div class="row">
@@ -104,13 +105,14 @@
                 <div class="form-group row">
                     <label for="inputIP" class="col-sm-2 col-form-label"><strong>IP Address</strong></label>
                     <div class="col-sm-10">
-                        <input type="text" name="ip" class="form-control" id="editIP">
+                        <input type="text" name="ip" class="form-control" id="editIP"
+                               pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPort" class="col-sm-2 col-form-label"><strong>Port</strong></label>
                     <div class="col-sm-10">
-                        <input type="text" name="port" class="form-control" id="editPort">
+                        <input type="text" name="port" class="form-control" id="editPort" pattern="[0-9]+">
                     </div>
                 </div>
                 <div class="row">
