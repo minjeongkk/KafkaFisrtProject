@@ -29,6 +29,7 @@ public class ConsumerTest {
         Properties properties = new Properties();
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServerIp+":"+bootstrapServerPort);
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID+id.toString());
+//        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID+UUID.randomUUID());
 //        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());

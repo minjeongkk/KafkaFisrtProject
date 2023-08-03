@@ -88,7 +88,7 @@ function searchTopic(id) {
                     len = result.length - 6;
                 }
                 for (var i = result.length - 1; i >= len; i--) {
-                    html += "<tr> <td> # </td><td>" + result[i] + "111111111111111111111111111111111111111111111111111111111111111111111111111111111</td></tr>";
+                    html += "<tr> <td> # </td><td>" + result[i] + "</td></tr>";
                 }
             }
             $("#" + sendId + "_listArea").append(html);
