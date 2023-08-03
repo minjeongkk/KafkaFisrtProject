@@ -12,10 +12,13 @@
     right: 10%;
 }
 
-#buttons button {
+.button {
+    width: 75px;
+    height: 43px;
     background-color: white;
     border-color: #0f172a;
     border-style: solid;
+    border-width: thin;
     font-weight: bold;
     color: #0f172a;
     margin: 5px;
@@ -158,7 +161,8 @@ input {
     width: 200px;
 }
 
-.form-group div {
+.inputText {
     display: inline-block;
+    border-style: hidden;
     width: 450px;
 }

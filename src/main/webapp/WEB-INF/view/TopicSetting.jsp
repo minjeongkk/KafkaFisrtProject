@@ -20,9 +20,9 @@
 <div class="page_container">
     <div class="row" id="buttons">
         <div class="col-auto">
-            <button class="btn btn-primary" id="new" type="button">New</button>
-            <button class="btn btn-primary" id="edit" type="button">Edit</button>
-            <button class="btn btn-primary" id="delete" type="button">Delete</button>
+            <button class="button" id="new" type="button">New</button>
+            <button class="button" id="edit" type="button">Edit</button>
+            <button class="button" id="delete" type="button">Delete</button>
         </div>
     </div>
     <table class="table" id="TopicListTable">
@@ -48,35 +48,27 @@
             <form class="popupForm" id="postForm" action="/saveTopic" method="post">
                 <div class="form-group row">
                     <label for="inputTopic" class="col-sm-2 col-form-label"><strong>Topic Name</strong></label>
-                    <div class="col-sm-10">
-                        <input type="text" name="topicName" class="form-control" id="inputTopic"/>
-                    </div>
+                    <input type="text" name="topicName" class="inputText" id="inputTopic"/>
                 </div>
                 <div class="form-group row">
                     <label for="inputMonitoring" class="col-sm-2 col-form-label"><strong>Monitoring
                         Name</strong></label>
-                    <div class="col-sm-10">
-                        <input type="text" name="monitoringName" class="form-control" id="inputMonitoring"/>
-                    </div>
+                    <input type="text" name="monitoringName" class="inputText" id="inputMonitoring"/>
                 </div>
                 <div class="form-group row">
                     <label for="inputIP" class="col-sm-2 col-form-label"><strong>IP Address</strong></label>
-                    <div class="col-sm-10">
-                        <input type="text" name="ip" class="form-control" id="inputIP"
-                               pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$">
-                    </div>
+                    <input type="text" name="ip" class="inputText" id="inputIP"
+                           pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$">
                 </div>
                 <div class="form-group row">
                     <label for="inputPort" class="col-sm-2 col-form-label"><strong>Port</strong></label>
-                    <div class="col-sm-10">
-                        <input type="text" name="port" class="form-control" id="inputPort" pattern="[0-9]+">
-                    </div>
+                    <input type="text" name="port" class="inputText" id="inputPort" pattern="[0-9]+">
                 </div>
                 <div class="row">
                     <div class="col-auto">
-                        <button class="btn btn-primary" id="saveBtn" type="submit" role="button" value="Save">Save
+                        <button class="button" id="saveBtn" type="submit" role="button" value="Save">Save
                         </button>
-                        <button class="btn btn-primary" id="saveCancelBtn" type="button" role="button" value="Cancel">Cancel
+                        <button class="button" id="saveCancelBtn" type="button" role="button" value="Cancel">Cancel
                         </button>
                     </div>
                 </div>
@@ -93,35 +85,27 @@
             <form class="popupForm" id="editForm" action="edit/" method="post">
                 <div class="form-group row">
                     <label for="inputTopic" class="col-sm-2 col-form-label"><strong>Topic Name</strong></label>
-                    <div class="col-sm-10">
-                        <input type="text" name="topicName" class="form-control" id="editTopic"/>
-                    </div>
+                    <input type="text" name="topicName" class="inputText" id="editTopic"/>
                 </div>
                 <div class="form-group row">
                     <label for="inputMonitoring" class="col-sm-2 col-form-label"><strong>Monitoring
                         Name</strong></label>
-                    <div class="col-sm-10">
-                        <input type="text" name="monitoringName" class="form-control" id="editMonitoring"/>
-                    </div>
+                    <input type="text" name="monitoringName" class="inputText" id="editMonitoring"/>
                 </div>
                 <div class="form-group row">
                     <label for="inputIP" class="col-sm-2 col-form-label"><strong>IP Address</strong></label>
-                    <div class="col-sm-10">
-                        <input type="text" name="ip" class="form-control" id="editIP"
-                               pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$">
-                    </div>
+                    <input type="text" name="ip" class="inputText" id="editIP"
+                           pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$">
                 </div>
                 <div class="form-group row">
                     <label for="inputPort" class="col-sm-2 col-form-label"><strong>Port</strong></label>
-                    <div class="col-sm-10">
-                        <input type="text" name="port" class="form-control" id="editPort" pattern="[0-9]+">
-                    </div>
+                    <input type="text" name="port" class="inputText" id="editPort" pattern="[0-9]+">
                 </div>
                 <div class="row">
                     <div class="col-auto">
-                        <button class="btn btn-primary" id="editBtn" type="submit" role="button" value="Save">Save
+                        <button class="button" id="editBtn" type="submit" role="button" value="Save">Save
                         </button>
-                        <button class="btn btn-primary" id="editCancelBtn" type="button" role="button" value="Cancel">Cancel
+                        <button class="button" id="editCancelBtn" type="button" role="button" value="Cancel">Cancel
                         </button>
                     </div>
                 </div>

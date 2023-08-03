@@ -1,51 +1,54 @@
 .page_container {
-    position:absolute;
-    margin:0;
-    padding:0;
+    position: absolute;
+    margin: 0;
+    padding: 0;
     height: 100%;
     width: 100%;
     overflow: scroll;
 }
 
-#monitoring{
-    margin:0;
-    padding:0;
+#monitoring {
+    margin: 0;
+    padding: 0;
     height: 100%;
 }
 
-#monitoringTable{
-    position:absolute;
+#monitoringTable {
+    position: absolute;
     display: flex;
     justify-content: space-between;
-    flex-wrap : wrap;
-    width : 82%;
+    flex-wrap: wrap;
+    width: 82%;
     height: calc(100% - 70px);
     left: 50%;
     right: 50%;
     transform: translate(-50%, 0);
 }
 
-.topic{
-    position : relative;
+.topic {
+    position: relative;
     border-style: solid;
-    width : 45%;
-    height : 47%;
-    margin : 10px;
+    width: 47%;
+    height: 48%;
+    margin-top: 20px;
+    overflow: auto;
 }
 
-.monitoringName{
-    margin-top : 5px;
-    margin-left : 10px;
-    font-size : 20px;
+.monitoringName {
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 20px;
+    font-family: "Noto Sans CJK KR";
     font-weight: bold;
 }
 
-.status{
-    margin-top : 5px;
-    margin-left : 5px;
-    font-size : 20px;
-    font-wieght : bold;
-    color:  red;
+.status {
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    font-family: "Noto Sans CJK KR";
+    font-wieght: bold;
+    color: red;
 }
 
 #buttons {
@@ -54,18 +57,22 @@
     right: 5%;
 }
 
-#buttons button {
+.button {
+    width: 70px;
+    height: 40px;
     background-color: white;
     border-color: #0f172a;
     border-style: solid;
-    font-weight: bold;
+    border-width: thin;
     color: #0f172a;
     margin: 5px;
 }
 
-#MonitoringListTable{
+.MonitoringListTable {
     position: absolute;
-    width : 90%;
-    left : 5%;
-    top : 60px;
+    width: 90%;
+    left: 5%;
+    top: 60px;
+    table-layout: fixed;
+    word-break: break-all;
 }
