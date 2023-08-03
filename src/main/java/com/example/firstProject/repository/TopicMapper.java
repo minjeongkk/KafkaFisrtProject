@@ -20,6 +20,9 @@ public interface TopicMapper {
     // 토픽 id로 조회
     public Topic getTopicById(Long id);
 
+    // 토픽 중복 확인
+    public Topic getTopicByName(String name);
+
     // 토픽 삭제
     public Long deleteTopic(Long id);
 

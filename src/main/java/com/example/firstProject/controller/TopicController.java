@@ -37,6 +37,9 @@ public class TopicController {
     @RequestMapping(method = RequestMethod.POST, value = "/saveTopic")
     public ResponseEntity<Long> saveTopic(TopicDto topicDto) {
         System.out.println(topicDto.toString());
+        if(topicService.checkTopicName(topicDto.getTopicName())){
+            return new ResponseEntity<>(0l, HttpStatus.BAD_REQUEST);
+        }
         Long topicId = topicService.saveTopic(topicDto);
         return new ResponseEntity<>(topicId, HttpStatus.OK);
     }

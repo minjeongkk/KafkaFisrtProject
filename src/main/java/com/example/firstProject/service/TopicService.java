@@ -73,6 +73,17 @@ public class TopicService {
         return topicDto;
     }
 
+    // 토픽명 중복 확인
+    public boolean checkTopicName(String name){
+        Topic topic = topicMapper.getTopicByName(name);
+        if (topic == null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     // 토픽 상태 변경
     public Long updateStatus(Long id, TopicDto topicDto, Status status) {
         topicDto.setId(id);

@@ -42,6 +42,12 @@ $(document).ready(function () {
                         console.log("저장 성공");
                         $("#popup_layer_new").css("display", "none");
                         $("#page").load("TopicSetting");
+                    },
+                    error : function (error){
+                        console.log(error);
+                        if(error.status == 400){
+                            alert("이미 존재하는 토픽명입니다.");
+                        }
                     }
                 });
             }
