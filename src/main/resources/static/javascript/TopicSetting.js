@@ -55,14 +55,18 @@ $(document).ready(function () {
 
     });
     $("#delete").click(function () {
-        $.ajax({
-            url: "delete/" + num,
-            type: "GET",
-            success: function (result) {
-                alert("삭제되었습니다.");
-                $("#page").load("TopicSetting");
-            }
-        })
+        if (num == "") {
+            alert("항목을 선택해주세요.");
+        } else{
+            $.ajax({
+                url: "delete/" + num,
+                type: "GET",
+                success: function (result) {
+                    alert("삭제되었습니다.");
+                    $("#page").load("TopicSetting");
+                }
+            })
+        }
     });
     $("#edit").click(function () {
         if (num == "") {
