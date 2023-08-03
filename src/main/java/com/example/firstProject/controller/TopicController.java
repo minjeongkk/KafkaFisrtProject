@@ -73,6 +73,9 @@ public class TopicController {
     @RequestMapping(method = RequestMethod.POST, value = "edit/{id}")
     public ResponseEntity<Long> update(@PathVariable Long id, TopicDto topicDto) {
         System.out.println("수정 : "+topicDto.toString());
+        if(topicService.checkTopicName(topicDto.getTopicName())){
+            return new ResponseEntity<>(0l, HttpStatus.BAD_REQUEST);
+        }
         Long topicId = topicService.updateTopic(id, topicDto);
         return new ResponseEntity<>(topicId, HttpStatus.OK);
     }
