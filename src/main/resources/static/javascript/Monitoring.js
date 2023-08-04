@@ -45,17 +45,6 @@ function subscribeTopic(id) {
             $("#" + sendId + "_status").css("color", "green");
             $("#" + sendId + "_status").text("RUNNING");
             $("#" + sendId).css('background-color', '#ffffff');
-            var tableHtml = "<table class='table MonitoringListTable'>" +
-                "<thead class='thead-light'>" +
-                "<tr class='text-center'>" +
-                "<th scope='col'>No.</th>" +
-                "<th scope='col'>Col</th>" +
-                "</tr>" +
-                "</thead>" +
-                "<tbody id='" + sendId + "_listArea'>" +
-                "</tbody>" +
-                "</table>";
-            $("#" + sendId + "_table").append(tableHtml);
         }
     })
 }
@@ -81,6 +70,17 @@ function searchTopic(id) {
         success: function (result) {
             console.log(result);
             var html = "";
+            var tableHtml = "<table class='table MonitoringListTable'>" +
+                "<thead class='thead-light'>" +
+                "<tr class='text-center'>" +
+                "<th scope='col'>No.</th>" +
+                "<th scope='col'>Col</th>" +
+                "</tr>" +
+                "</thead>" +
+                "<tbody id='" + sendId + "_listArea'>" +
+                "</tbody>" +
+                "</table>";
+            $("#" + sendId + "_table").append(tableHtml);
             if (result.length > 0) {
                 $("#" + sendId + "_listArea").empty();
                 var len = 0;
