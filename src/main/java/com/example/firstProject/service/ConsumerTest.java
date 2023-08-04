@@ -28,12 +28,15 @@ public class ConsumerTest {
         // consumer properties
         Properties properties = new Properties();
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServerIp+":"+bootstrapServerPort);
-        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID+id.toString());
-//        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID+UUID.randomUUID());
-//        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
+//        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID+id.toString());
+        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
+//        properties.setProperty(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG,("SchedulerCoordinator"+UUID.randomUUID()));
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+//        properties.setProperty("enable.auto.commit", "true");
+//        properties.setProperty("auto.commit.interval.ms", "1000");
+//        properties.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString());
 
 //        if(consumer==null){
 //            // consumer 객체 생성, 지정한 토픽에서 데이터 받아옴
