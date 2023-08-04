@@ -4,6 +4,7 @@ import com.example.firstProject.dto.TopicDto;
 import com.example.firstProject.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class TopicController {
     public ResponseEntity<Long> saveTopic(TopicDto topicDto) {
         System.out.println(topicDto.toString());
         if(topicService.checkTopicName(topicDto.getTopicName())){
-            return new ResponseEntity<>(0l, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(0l, HttpStatusCode.valueOf(500));
         }
         Long topicId = topicService.saveTopic(topicDto);
         return new ResponseEntity<>(topicId, HttpStatus.OK);
@@ -74,7 +75,7 @@ public class TopicController {
     public ResponseEntity<Long> update(@PathVariable Long id, TopicDto topicDto) {
         System.out.println("수정 : "+topicDto.toString());
         if(topicService.checkTopicName(topicDto.getTopicName())){
-            return new ResponseEntity<>(0l, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(0l, HttpStatusCode.valueOf(500));
         }
         Long topicId = topicService.updateTopic(id, topicDto);
         return new ResponseEntity<>(topicId, HttpStatus.OK);

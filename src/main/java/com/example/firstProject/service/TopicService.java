@@ -76,7 +76,7 @@ public class TopicService {
     // 토픽명 중복 확인
     public boolean checkTopicName(String name){
         Topic topic = topicMapper.getTopicByName(name);
-        if (topic == null){
+        if (topic == null || topic.getTopicName().equals(name)){
             return false;
         }
         else{

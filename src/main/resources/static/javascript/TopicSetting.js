@@ -45,7 +45,7 @@ $(document).ready(function () {
                     },
                     error : function (error){
                         console.log(error);
-                        if(error.status == 400){
+                        if(error.status == 500){
                             alert("이미 존재하는 토픽명입니다.");
                         }
                     }
@@ -116,7 +116,7 @@ $(document).ready(function () {
                                     },
                                     error : function (error){
                                         console.log(error);
-                                        if(error.status == 400){
+                                        if(error.status == 500){
                                             alert("이미 존재하는 토픽명입니다.");
                                         }
                                     }
