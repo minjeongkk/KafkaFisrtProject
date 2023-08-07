@@ -2,17 +2,13 @@ package com.example.firstProject.controller;
 
 import com.example.firstProject.dto.TopicDto;
 import com.example.firstProject.entity.Status;
-import com.example.firstProject.service.ConsumerService;
 import com.example.firstProject.service.ConsumerTest;
 import com.example.firstProject.service.TopicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,10 +18,10 @@ public class KafkaTestController {
     private TopicService topicService;
 
     // 구독
-    @GetMapping("/subscribe1/{id}")
-    public String subscribe(@PathVariable Long id){
+    @GetMapping("/subscribe/{id}")
+    public String subscribe(@PathVariable Long id) {
         // 구독 (ip, port, topic이름 전달)
-        if(consumerTest==null){
+        if (consumerTest == null) {
             consumerTest = new ConsumerTest();
         }
         TopicDto topicDto = topicService.findById(id);
@@ -35,18 +31,18 @@ public class KafkaTestController {
         TopicDto topicDto1 = topicService.findById(id);
         topicService.updateStatus(id, topicDto1, Status.Running);
 
-        return "subscribe";
+        return id.toString() + ":subscribe";
     }
 
     // 조회
-    @GetMapping(value="/getData1/{id}")
-    public ArrayList getMessage(@PathVariable Long id){
+    @GetMapping(value = "/getData/{id}")
+    public ArrayList getMessage(@PathVariable Long id) {
         return consumerTest.test(id);
     }
 
     // 중지
-    @GetMapping("/stop1/{id}")
-    public String stop(@PathVariable Long id){
+    @GetMapping("/stop/{id}")
+    public String stop(@PathVariable Long id) {
         // 구독 중지
         consumerTest.stop(id);
 
@@ -54,6 +50,6 @@ public class KafkaTestController {
         TopicDto topicDto1 = topicService.findById(id);
         topicService.updateStatus(id, topicDto1, Status.Stopped);
 
-        return "stop";
+        return id.toString() + ":stop";
     }
 }
