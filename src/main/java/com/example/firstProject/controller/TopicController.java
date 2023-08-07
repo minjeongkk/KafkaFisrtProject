@@ -6,33 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class TopicController {
     @Autowired
     private TopicService topicService;
-
-    // 메인 화면 호출
-    @RequestMapping(method = RequestMethod.GET, value = "/")
-    public String viewMain() {
-        return "Main";
-    }
-
-    // topic 관리 화면 호출
-    @RequestMapping(method = RequestMethod.GET, value = "/TopicSetting")
-    public String viewSetting() {
-        return "TopicSetting";
-    }
-
-    // topic 모니터링 화면 호출
-    @RequestMapping(method = RequestMethod.GET, value = "/Monitoring")
-    public String viewMonitoring() {
-        return "Monitoring";
-    }
 
     // 토픽 저장
     @RequestMapping(method = RequestMethod.POST, value = "/saveTopic")
@@ -47,7 +28,6 @@ public class TopicController {
 
     // 토픽 전체 조회
     @RequestMapping(method = RequestMethod.GET, value = "getAllTopic")
-    @ResponseBody
     public List<TopicDto> getAllTopic() {
         List<TopicDto> topicDtoList = topicService.getAllTopic();
         System.out.println("topicDtoList::" + topicDtoList.toString());
@@ -55,8 +35,7 @@ public class TopicController {
     }
 
     // 토픽 세부 조회
-    @RequestMapping(method = RequestMethod.GET, value = "edit/{id}")
-    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, value = "getTopic/{id}")
     public TopicDto getTopic(@PathVariable Long id) {
         TopicDto topicDto = topicService.findById(id);
         System.out.println("가져옴: "+topicDto.toString());
@@ -64,7 +43,7 @@ public class TopicController {
     }
 
     // 토픽 삭제
-    @RequestMapping(method = RequestMethod.GET, value = "delete/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "delete/{id}")
     public String deleteTopic(@PathVariable Long id){
         topicService.deleteTopic(id);
         return "redirect:/";

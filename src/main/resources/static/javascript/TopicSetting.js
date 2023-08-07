@@ -60,7 +60,7 @@ $(document).ready(function () {
         } else{
             $.ajax({
                 url: "delete/" + num,
-                type: "GET",
+                type: "POST",
                 success: function (result) {
                     alert("삭제되었습니다.");
                     $("#page").load("TopicSetting");
@@ -73,7 +73,7 @@ $(document).ready(function () {
             alert("항목을 선택해주세요.");
         } else {
             $.ajax({
-                url: "edit/" + num,
+                url: "getTopic/" + num,
                 type: "GET",
                 success: function (result) {
                     console.log(result);
@@ -83,7 +83,7 @@ $(document).ready(function () {
                     else{
                         $("#popup_layer_edit").css("display", "block");
                         $.ajax({
-                            url: "edit/" + num,
+                            url: "getTopic/" + num,
                             type: "GET",
                             success: function (result) {
                                 console.log(result);
