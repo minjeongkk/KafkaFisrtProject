@@ -60,7 +60,7 @@ $(document).ready(function () {
         } else{
             $.ajax({
                 url: "delete/" + num,
-                type: "POST",
+                type: "DELETE",
                 success: function (result) {
                     alert("삭제되었습니다.");
                     $("#page").load("TopicSetting");

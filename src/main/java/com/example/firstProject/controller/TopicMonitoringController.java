@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequiredArgsConstructor
-public class KafkaController {
+public class TopicMonitoringController {
     private Consumer consumer;
     @Autowired
     private TopicService topicService;

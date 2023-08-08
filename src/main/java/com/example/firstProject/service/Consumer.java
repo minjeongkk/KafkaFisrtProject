@@ -10,20 +10,18 @@ import java.time.Duration;
 import java.util.*;
 
 public class Consumer {
-    private static String bootstrapServerIp = "";
-    private static String bootstrapServerPort = "";
-    private static String topicName = "";
-    private static final String GROUP_ID = "consumer";
+    private static HashMap<Long, KafkaConsumer<String, String>> consumers =  new HashMap<Long, KafkaConsumer<String, String>>( );
 
-    private static KafkaConsumer<String, String> consumer;
-    private HashMap<Long, KafkaConsumer<String, String>> consumers =  new HashMap<Long, KafkaConsumer<String, String>>( );
-
+    public Consumer() {
+        System.out.println("1111111111");;
+    }
 
     // 구독
     public void subscribe(Long id, String ip, String port, String topic){
-        bootstrapServerIp = ip;
-        bootstrapServerPort = port;
-        topicName = topic;
+        String bootstrapServerIp = ip;
+        String bootstrapServerPort = port;
+        String topicName = topic;
+        String GROUP_ID = "consumer";
 
         // consumer properties
         Properties properties = new Properties();
@@ -33,10 +31,9 @@ public class Consumer {
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 
-        consumer = new KafkaConsumer<>(properties);
-        consumers.put(id, consumer);
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
         consumer.subscribe(Arrays.asList(topicName));
-        ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
+        consumers.put(id, consumer);
     }
 
     // 조회

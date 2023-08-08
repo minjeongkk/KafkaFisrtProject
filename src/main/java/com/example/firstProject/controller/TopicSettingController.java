@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class TopicController {
+public class TopicSettingController {
     @Autowired
     private TopicService topicService;
 
@@ -43,7 +43,7 @@ public class TopicController {
     }
 
     // 토픽 삭제
-    @RequestMapping(method = RequestMethod.POST, value = "delete/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "delete/{id}")
     public String deleteTopic(@PathVariable Long id){
         topicService.deleteTopic(id);
         return "redirect:/";
