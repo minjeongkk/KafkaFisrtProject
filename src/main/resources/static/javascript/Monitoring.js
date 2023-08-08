@@ -51,47 +51,56 @@ function subscribeTopic(id) {
 
 function stopTopic(id) {
     var sendId = parseInt(id.split('_')[0])
-    $.ajax({
-        url: "stop/" + sendId,
-        success: function (result) {
-            console.log(result);
-            $("#" + sendId + "_status").css("color", "red");
-            $("#" + sendId + "_status").text("STOPPED");
-            $("#" + sendId).css('background-color', '#e8e8e8');
-            $("#" + sendId + "_table").empty();
-        }
-    })
+    if($("#" + sendId+"_status").text()=="RUNNING"){
+        $.ajax({
+            url: "stop/" + sendId,
+            success: function (result) {
+                console.log(result);
+                $("#" + sendId + "_status").css("color", "red");
+                $("#" + sendId + "_status").text("STOPPED");
+                $("#" + sendId).css('background-color', '#e8e8e8');
+                $("#" + sendId + "_table").empty();
+            }
+        })
+    }
+    else{
+        alert("구독하지 않은 토픽입니다.");
+    }
 }
 
 function searchTopic(id) {
     var sendId = parseInt(id.split('_')[0])
-    $.ajax({
-        url: "getData/" + sendId,
-        success: function (result) {
-            console.log(result);
-            var html = "";
-            var tableHtml = "<table class='table MonitoringListTable'>" +
-                "<thead class='thead-light'>" +
-                "<tr class='text-center'>" +
-                "<th scope='col'>No.</th>" +
-                "<th scope='col'>Col</th>" +
-                "</tr>" +
-                "</thead>" +
-                "<tbody id='" + sendId + "_listArea'>" +
-                "</tbody>" +
-                "</table>";
-            $("#" + sendId + "_table").append(tableHtml);
-            if (result.length > 0) {
-                $("#" + sendId + "_listArea").empty();
-                var len = 0;
-                if (result.length >= 6) {
-                    len = result.length - 6;
+    if($("#" + sendId+"_status").text()=="RUNNING") {
+        $.ajax({
+            url: "getData/" + sendId,
+            success: function (result) {
+                console.log(result);
+                var html = "";
+                var tableHtml = "<table class='table MonitoringListTable'>" +
+                    "<thead class='thead-light'>" +
+                    "<tr class='text-center'>" +
+                    "<th scope='col'>No.</th>" +
+                    "<th scope='col'>Col</th>" +
+                    "</tr>" +
+                    "</thead>" +
+                    "<tbody id='" + sendId + "_listArea'>" +
+                    "</tbody>" +
+                    "</table>";
+                $("#" + sendId + "_table").append(tableHtml);
+                if (result.length > 0) {
+                    $("#" + sendId + "_listArea").empty();
+                    var len = 0;
+                    if (result.length >= 6) {
+                        len = result.length - 6;
+                    }
+                    for (var i = result.length - 1; i >= len; i--) {
+                        html += "<tr> <td> # </td><td>" + result[i] + "</td></tr>";
+                    }
                 }
-                for (var i = result.length - 1; i >= len; i--) {
-                    html += "<tr> <td> # </td><td>" + result[i] + "</td></tr>";
-                }
+                $("#" + sendId + "_listArea").append(html);
             }
-            $("#" + sendId + "_listArea").append(html);
-        }
-    })
+        })
+    } else{
+        alert("구독하지 않은 토픽입니다.");
+    }
 }
