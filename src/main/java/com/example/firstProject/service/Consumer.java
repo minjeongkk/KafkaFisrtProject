@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.*;
 
 public class Consumer {
-    private static HashMap<Long, KafkaConsumer<String, String>> consumers =  new HashMap<Long, KafkaConsumer<String, String>>( );
+    private static Map<Long, KafkaConsumer<String, String>> consumers =  new HashMap<Long, KafkaConsumer<String, String>>( );
 
     public Consumer() {
         System.out.println("1111111111");;
@@ -37,11 +37,11 @@ public class Consumer {
     }
 
     // 조회
-    public ArrayList test(Long id){
+    public List test(Long id){
         // 데이터를 받아서 출력
         try{
             ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
-            ArrayList list = new ArrayList<>();
+            List list = new ArrayList<>();
             for (ConsumerRecord<String, String> record : records){
                 System.out.println(record.value());
                 list.add(record.value());
