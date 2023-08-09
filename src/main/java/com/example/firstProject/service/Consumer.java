@@ -34,10 +34,12 @@ public class Consumer {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
         consumer.subscribe(Arrays.asList(topicName));
         consumers.put(id, consumer);
+
+        ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
     }
 
     // 조회
-    public List test(Long id){
+    public List getData(Long id){
         // 데이터를 받아서 출력
         try{
             ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
