@@ -42,9 +42,16 @@ function subscribeTopic(id) {
     $.ajax({
         url: "subscribe/" + sendId,
         success: function (result) {
+            console.log(result);
             $("#" + sendId + "_status").css("color", "green");
             $("#" + sendId + "_status").text("RUNNING");
             $("#" + sendId).css('background-color', '#ffffff');
+        },
+        error: function(error){
+            console.log(error);
+            if(error.status == 404){
+                alert("구독할 수 없습니다.");
+            }
         }
     })
 }

@@ -1,5 +1,6 @@
 package com.example.firstProject.service;
 
+import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -8,16 +9,19 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class Consumer {
     private static Map<Long, KafkaConsumer<String, String>> consumers =  new HashMap<Long, KafkaConsumer<String, String>>( );
 
     public Consumer() {
-        System.out.println("1111111111");;
+        System.out.println("1111111111");
     }
 
     // 구독
-    public void subscribe(Long id, String ip, String port, String topic){
+    public boolean subscribe(Long id, String ip, String port, String topic){
         String bootstrapServerIp = ip;
         String bootstrapServerPort = port;
         String topicName = topic;
@@ -31,11 +35,20 @@ public class Consumer {
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 
+        try {
+            AdminClient client = AdminClient.create(properties);
+            client.describeCluster().nodes().get(5, TimeUnit.SECONDS);
+        } catch (TimeoutException | InterruptedException | ExecutionException e) {
+//            System.out.printf(e.getMessage());
+            return false;
+        }
+
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
         consumer.subscribe(Arrays.asList(topicName));
         consumers.put(id, consumer);
+        return true;
 
-        ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
+//        ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
     }
 
     // 조회

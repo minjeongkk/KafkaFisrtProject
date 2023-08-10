@@ -3,10 +3,11 @@ package com.example.firstProject.controller;
 import com.example.firstProject.dto.TopicDto;
 import com.example.firstProject.entity.Status;
 import com.example.firstProject.service.Consumer;
-import com.example.firstProject.service.KafkaAdminClient;
 import com.example.firstProject.service.TopicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,19 +22,23 @@ public class TopicMonitoringController {
 
     // 구독
     @GetMapping("/subscribe/{id}")
-    public String subscribe(@PathVariable Long id) {
+    public ResponseEntity<String> subscribe(@PathVariable Long id) {
         // 구독 (ip, port, topic이름 전달)
         if (consumer == null) {
             consumer = new Consumer();
         }
         TopicDto topicDto = topicService.findById(id);
-        consumer.subscribe(id, topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
 
-        // 토픽 상태 Running으로 변경
-        TopicDto topicDto1 = topicService.findById(id);
-        topicService.updateStatus(id, topicDto1, Status.Running);
-
-        return id.toString() + ":subscribe";
+        boolean isSubscribed= consumer.subscribe(id, topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
+        if (isSubscribed){
+            // 토픽 상태 Running으로 변경
+            TopicDto topicDto1 = topicService.findById(id);
+            topicService.updateStatus(id, topicDto1, Status.Running);
+            return new ResponseEntity<>(id.toString()+":subscribe",HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(id.toString()+":can't subscribe",HttpStatus.NOT_FOUND);
+        }
     }
 
     // 조회
@@ -44,7 +49,7 @@ public class TopicMonitoringController {
 
     // 중지
     @GetMapping("/stop/{id}")
-    public String stop(@PathVariable Long id) {
+    public ResponseEntity<String> stop(@PathVariable Long id) {
         // 구독 중지
         consumer.stop(id);
 
@@ -52,6 +57,6 @@ public class TopicMonitoringController {
         TopicDto topicDto1 = topicService.findById(id);
         topicService.updateStatus(id, topicDto1, Status.Stopped);
 
-        return id.toString() + ":stop";
+        return new ResponseEntity<>(id.toString()+":stop",HttpStatus.OK);
     }
 }
