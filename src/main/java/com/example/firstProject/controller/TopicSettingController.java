@@ -15,7 +15,7 @@ public class TopicSettingController {
     private TopicService topicService;
 
     @Autowired
-    public TopicSettingController(TopicService topicService){
+    public TopicSettingController(TopicService topicService) {
         this.topicService = topicService;
     }
 
@@ -23,11 +23,11 @@ public class TopicSettingController {
     @RequestMapping(method = RequestMethod.POST, value = "/saveTopic")
     public ResponseEntity<String> saveTopic(TopicDto topicDto) {
         System.out.println(topicDto.toString());
-        if(topicService.checkTopicName(topicDto.getTopicName())){
+        if (topicService.checkTopicName(topicDto.getTopicName())) {
             return new ResponseEntity<>("토픽명 중복", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         Long topicId = topicService.saveTopic(topicDto);
-        return new ResponseEntity<>(topicId.toString()+":토픽 저장 성공", HttpStatus.OK);
+        return new ResponseEntity<>(topicId.toString() + ":토픽 저장 성공", HttpStatus.OK);
     }
 
     // 토픽 전체 조회
@@ -42,26 +42,26 @@ public class TopicSettingController {
     @RequestMapping(method = RequestMethod.GET, value = "getTopic/{id}")
     public ResponseEntity<TopicDto> getTopic(@PathVariable Long id) {
         TopicDto topicDto = topicService.findById(id);
-        System.out.println("가져옴: "+topicDto.toString());
+        System.out.println("가져옴: " + topicDto.toString());
         return new ResponseEntity<>(topicDto, HttpStatus.OK);
     }
 
     // 토픽 삭제
     @RequestMapping(method = RequestMethod.DELETE, value = "delete/{id}")
-    public ResponseEntity<String> deleteTopic(@PathVariable Long id){
+    public ResponseEntity<String> deleteTopic(@PathVariable Long id) {
         Long topicId = topicService.deleteTopic(id);
-        return new ResponseEntity<>(topicId.toString()+":토픽 삭제 성공", HttpStatus.OK);
+        return new ResponseEntity<>(topicId.toString() + ":토픽 삭제 성공", HttpStatus.OK);
     }
 
     // 토픽 수정
     @RequestMapping(method = RequestMethod.POST, value = "edit/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, TopicDto topicDto) {
-        System.out.println("수정 : "+topicDto.toString());
-        if(topicService.checkTopicName(topicDto.getTopicName())){
+        System.out.println("수정 : " + topicDto.toString());
+        if (topicService.checkTopicName(topicDto.getTopicName())) {
             return new ResponseEntity<>("토픽명 중복", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         Long topicId = topicService.updateTopic(id, topicDto);
-        return new ResponseEntity<>(topicId.toString()+":토픽 수정 성공", HttpStatus.OK);
+        return new ResponseEntity<>(topicId.toString() + ":토픽 수정 성공", HttpStatus.OK);
     }
 
 }

@@ -46,21 +46,21 @@ public class TopicService {
 
     // 토픽 삭제
     @Transactional
-    public Long deleteTopic(Long id){
+    public Long deleteTopic(Long id) {
         topicMapper.deleteTopic(id);
         return id;
     }
 
     // 토픽 수정
     @Transactional
-    public Long updateTopic(Long id, TopicDto topicDto){
+    public Long updateTopic(Long id, TopicDto topicDto) {
         topicDto.setId(id);
         topicMapper.updateTopic(topicDto.toEntity());
         return topicDto.getId();
     }
 
     // 토픽 id로 찾기
-    public TopicDto findById(Long id){
+    public TopicDto findById(Long id) {
         Topic topic = topicMapper.getTopicById(id);
         TopicDto topicDto = TopicDto.builder()
                 .id(topic.getId())
@@ -74,12 +74,11 @@ public class TopicService {
     }
 
     // 토픽명 중복 확인
-    public boolean checkTopicName(String name){
+    public boolean checkTopicName(String name) {
         Topic topic = topicMapper.getTopicByName(name);
-        if (topic == null || topic.getTopicName().equals(name)){
+        if (topic == null || topic.getTopicName().equals(name)) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }

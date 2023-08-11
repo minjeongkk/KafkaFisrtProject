@@ -20,7 +20,7 @@ public class TopicMonitoringController {
     private TopicService topicService;
 
     @Autowired
-    public TopicMonitoringController(Consumer consumer, TopicService topicService){
+    public TopicMonitoringController(Consumer consumer, TopicService topicService) {
         this.consumer = consumer;
         this.topicService = topicService;
     }
@@ -31,15 +31,13 @@ public class TopicMonitoringController {
         TopicDto topicDto = topicService.findById(id);
 
         // 구독 (ip, port, topic이름 전달)
-        boolean isSubscribed= consumer.subscribe(id, topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
-        if (isSubscribed){
+        boolean isSubscribed = consumer.subscribe(id, topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
+        if (isSubscribed) {
             // 토픽 상태 Running으로 변경
-            TopicDto topicDto1 = topicService.findById(id);
-            topicService.updateStatus(id, topicDto1, Status.Running);
-            return new ResponseEntity<>(id.toString()+":subscribe",HttpStatus.OK);
-        }
-        else{
-            return new ResponseEntity<>(id.toString()+":can't subscribe",HttpStatus.NOT_FOUND);
+            topicService.updateStatus(id, topicDto, Status.Running);
+            return new ResponseEntity<>(id.toString() + ":subscribe", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(id.toString() + ":can't subscribe", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -56,9 +54,9 @@ public class TopicMonitoringController {
         consumer.stop(id);
 
         // 토픽 상태 Stopped로 변경
-        TopicDto topicDto1 = topicService.findById(id);
-        topicService.updateStatus(id, topicDto1, Status.Stopped);
+        TopicDto topicDto = topicService.findById(id);
+        topicService.updateStatus(id, topicDto, Status.Stopped);
 
-        return new ResponseEntity<>(id.toString()+":stop",HttpStatus.OK);
+        return new ResponseEntity<>(id.toString() + ":stop", HttpStatus.OK);
     }
 }

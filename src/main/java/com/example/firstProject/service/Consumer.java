@@ -14,14 +14,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 public class Consumer {
-    private static Map<Long, KafkaConsumer<String, String>> consumers =  new HashMap<Long, KafkaConsumer<String, String>>( );
+    private static Map<Long, KafkaConsumer<String, String>> consumers = new HashMap<Long, KafkaConsumer<String, String>>();
 
     public Consumer() {
         System.out.println("1111111111");
     }
 
     // 구독
-    public boolean subscribe(Long id, String ip, String port, String topic){
+    public boolean subscribe(Long id, String ip, String port, String topic) {
         String bootstrapServerIp = ip;
         String bootstrapServerPort = port;
         String topicName = topic;
@@ -29,8 +29,8 @@ public class Consumer {
 
         // consumer properties
         Properties properties = new Properties();
-        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServerIp+":"+bootstrapServerPort);
-        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID+id.toString());
+        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServerIp + ":" + bootstrapServerPort);
+        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID + id.toString());
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
@@ -52,12 +52,12 @@ public class Consumer {
     }
 
     // 조회
-    public List getData(Long id){
+    public List getData(Long id) {
         // 데이터를 받아서 출력
-        try{
+        try {
             ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
             List list = new ArrayList<>();
-            for (ConsumerRecord<String, String> record : records){
+            for (ConsumerRecord<String, String> record : records) {
                 System.out.println(record.value());
                 list.add(record.value());
             }
@@ -67,7 +67,7 @@ public class Consumer {
     }
 
     // 중지
-    public void stop(Long id){
+    public void stop(Long id) {
         consumers.get(id).close();
         consumers.remove(id);
     }
