@@ -40,9 +40,9 @@
     </table>
 </div>
 
+<!-- 생성 팝업창 -->
 <div class="popup_layer" id="popup_layer_new" style="display: none;">
     <div class="popup_box">
-        <!--팝업 컨텐츠 영역-->
         <div class="popup_cont">
             <div class="title">New Topic</div>
             <form class="popupForm" id="postForm" action="/saveTopic" method="post">
@@ -77,9 +77,9 @@
     </div>
 </div>
 
+<!-- 편집 팝업창 -->
 <div class="popup_layer" id="popup_layer_edit" style="display: none;">
     <div class="popup_box">
-        <!--팝업 컨텐츠 영역-->
         <div class="popup_cont">
             <div class="title">Edit Topic</div>
             <form class="popupForm" id="editForm" action="edit/" method="post">

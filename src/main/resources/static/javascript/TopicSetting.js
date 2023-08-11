@@ -1,27 +1,27 @@
-$.ajax({
-    url: "getAllTopic",
-    success: function (result) {
-        console.log(result);
-        $("#listArea").empty();
-        var html = "";
-        result.forEach(function (item) {
-            html += "<tr onclick='tableClick(" + item.id + ")' id='" + item.id + "'> <td>" + item.topicName + "</td><td>"
-                + item.monitoringName + "</td><td>" + item.ip + "</td><td>" + item.port + "</td><td>" + item.status + "</td></tr>";
-        })
-        $("#listArea").append(html);
-    }
-})
-
 var num = "";
 
 function tableClick(no) {
     $("table tbody tr").css("background-color", "white");
-    console.log(no);
+    console.log("선택:"+no);
     num = no;
     $("#" + no).css("background-color", "lightgray");
 }
 
 $(document).ready(function () {
+    $.ajax({
+        url: "getAllTopic",
+        success: function (result) {
+            console.log(result);
+            $("#listArea").empty();
+            var html = "";
+            result.forEach(function (item) {
+                html += "<tr onclick='tableClick(" + item.id + ")' id='" + item.id + "'> <td>" + item.topicName + "</td><td>"
+                    + item.monitoringName + "</td><td>" + item.ip + "</td><td>" + item.port + "</td><td>" + item.status + "</td></tr>";
+            })
+            $("#listArea").append(html);
+        }
+    })
+
     $("#new").click(function () {
         $("#popup_layer_new").css("display", "block");
         $("form").submit(function (e) {
@@ -30,7 +30,6 @@ $(document).ready(function () {
             if ($("#inputTopic").val().trim() == "" || $("#inputMonitoring").val().trim() == ""
                 || $("#inputIP").val().trim() == "" || $("#inputPort").val().trim() == "") {
                 alert("값을 입력해주세요.");
-                e.preventDefault();
             } else {
                 var form = $(this);
                 $.ajax({
@@ -42,9 +41,9 @@ $(document).ready(function () {
                         $("#popup_layer_new").css("display", "none");
                         $("#page").load("TopicSetting");
                     },
-                    error : function (error){
-                        console.log("실패:"+error);
-                        if(error.status == 500){
+                    error: function (error) {
+                        console.log("실패:" + error.status);
+                        if (error.status == 500) {
                             alert("이미 존재하는 토픽명입니다.");
                         }
                     }
@@ -56,7 +55,7 @@ $(document).ready(function () {
     $("#delete").click(function () {
         if (num == "") {
             alert("항목을 선택해주세요.");
-        } else{
+        } else {
             $.ajax({
                 url: "delete/" + num,
                 type: "DELETE",
@@ -77,10 +76,9 @@ $(document).ready(function () {
                 type: "GET",
                 success: function (result) {
                     console.log(result);
-                    if(result.status=="Running"){
+                    if (result.status == "Running") {
                         alert("구독 중에는 편집할 수 없습니다.");
-                    }
-                    else{
+                    } else {
                         $("#popup_layer_edit").css("display", "block");
                         $.ajax({
                             url: "getTopic/" + num,
@@ -100,7 +98,6 @@ $(document).ready(function () {
                             if ($("#editTopic").val().trim() == "" || $("#editMonitoring").val().trim() == ""
                                 || $("#editIP").val().trim() == "" || $("#editPort").val().trim() == "") {
                                 alert("값을 입력해주세요.");
-                                e.preventDefault();
                             } else {
                                 var form = $(this);
 
@@ -113,9 +110,9 @@ $(document).ready(function () {
                                         $("#popup_layer_edit").css("display", "none");
                                         $("#page").load("TopicSetting");
                                     },
-                                    error : function (error){
-                                        console.log(error);
-                                        if(error.status == 500){
+                                    error: function (error) {
+                                        console.log("실패:" + error.status);
+                                        if (error.status == 500) {
                                             alert("이미 존재하는 토픽명입니다.");
                                         }
                                     }

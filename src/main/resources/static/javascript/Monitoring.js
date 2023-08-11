@@ -47,9 +47,9 @@ function subscribeTopic(id) {
             $("#" + sendId + "_status").text("RUNNING");
             $("#" + sendId).css('background-color', '#ffffff');
         },
-        error: function(error){
+        error: function (error) {
             console.log(error);
-            if(error.status == 404){
+            if (error.status == 404) {
                 alert("구독할 수 없습니다.");
             }
         }
@@ -58,7 +58,7 @@ function subscribeTopic(id) {
 
 function stopTopic(id) {
     var sendId = parseInt(id.split('_')[0])
-    if($("#" + sendId+"_status").text()=="RUNNING"){
+    if ($("#" + sendId + "_status").text() == "RUNNING") {
         $.ajax({
             url: "stop/" + sendId,
             success: function (result) {
@@ -69,15 +69,14 @@ function stopTopic(id) {
                 $("#" + sendId + "_table").empty();
             }
         })
-    }
-    else{
+    } else {
         alert("구독하지 않은 토픽입니다.");
     }
 }
 
 function searchTopic(id) {
     var sendId = parseInt(id.split('_')[0])
-    if($("#" + sendId+"_status").text()=="RUNNING") {
+    if ($("#" + sendId + "_status").text() == "RUNNING") {
         $.ajax({
             url: "getData/" + sendId,
             success: function (result) {
@@ -107,7 +106,7 @@ function searchTopic(id) {
                 $("#" + sendId + "_listArea").append(html);
             }
         })
-    } else{
+    } else {
         alert("구독하지 않은 토픽입니다.");
     }
 }
