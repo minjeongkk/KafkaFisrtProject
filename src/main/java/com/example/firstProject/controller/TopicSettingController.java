@@ -12,8 +12,12 @@ import java.util.List;
 
 @RestController
 public class TopicSettingController {
-    @Autowired
     private TopicService topicService;
+
+    @Autowired
+    public TopicSettingController(TopicService topicService){
+        this.topicService = topicService;
+    }
 
     // 토픽 저장
     @RequestMapping(method = RequestMethod.POST, value = "/saveTopic")

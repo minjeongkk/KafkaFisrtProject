@@ -17,18 +17,20 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 public class TopicMonitoringController {
     private Consumer consumer;
-    @Autowired
     private TopicService topicService;
+
+    @Autowired
+    public TopicMonitoringController(Consumer consumer, TopicService topicService){
+        this.consumer = consumer;
+        this.topicService = topicService;
+    }
 
     // 구독
     @GetMapping("/subscribe/{id}")
     public ResponseEntity<String> subscribe(@PathVariable Long id) {
-        // 구독 (ip, port, topic이름 전달)
-        if (consumer == null) {
-            consumer = new Consumer();
-        }
         TopicDto topicDto = topicService.findById(id);
 
+        // 구독 (ip, port, topic이름 전달)
         boolean isSubscribed= consumer.subscribe(id, topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
         if (isSubscribed){
             // 토픽 상태 Running으로 변경
