@@ -37,14 +37,13 @@ $(document).ready(function () {
                     type: "POST",
                     url: "saveTopic",
                     data: form.serialize(), // serializes the form's elements.
-                    dataType: 'json',
-                    success: function (json) {
-                        console.log("저장 성공");
+                    success: function (result) {
+                        console.log(result);
                         $("#popup_layer_new").css("display", "none");
                         $("#page").load("TopicSetting");
                     },
                     error : function (error){
-                        console.log(error);
+                        console.log("실패:"+error);
                         if(error.status == 500){
                             alert("이미 존재하는 토픽명입니다.");
                         }
@@ -62,6 +61,7 @@ $(document).ready(function () {
                 url: "delete/" + num,
                 type: "DELETE",
                 success: function (result) {
+                    console.log(result);
                     alert("삭제되었습니다.");
                     $("#page").load("TopicSetting");
                 }
@@ -108,9 +108,8 @@ $(document).ready(function () {
                                     type: "POST",
                                     url: "edit/" + num,
                                     data: form.serialize(), // serializes the form's elements.
-                                    dataType: 'json',
-                                    success: function (json) {
-                                        console.log("수정 성공");
+                                    success: function (result) {
+                                        console.log(result);
                                         $("#popup_layer_edit").css("display", "none");
                                         $("#page").load("TopicSetting");
                                     },

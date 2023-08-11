@@ -17,47 +17,47 @@ public class TopicSettingController {
 
     // 토픽 저장
     @RequestMapping(method = RequestMethod.POST, value = "/saveTopic")
-    public ResponseEntity<Long> saveTopic(TopicDto topicDto) {
+    public ResponseEntity<String> saveTopic(TopicDto topicDto) {
         System.out.println(topicDto.toString());
         if(topicService.checkTopicName(topicDto.getTopicName())){
-            return new ResponseEntity<>(0l, HttpStatusCode.valueOf(500));
+            return new ResponseEntity<>("토픽명 중복", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         Long topicId = topicService.saveTopic(topicDto);
-        return new ResponseEntity<>(topicId, HttpStatus.OK);
+        return new ResponseEntity<>(topicId.toString()+":토픽 저장 성공", HttpStatus.OK);
     }
 
     // 토픽 전체 조회
     @RequestMapping(method = RequestMethod.GET, value = "getAllTopic")
-    public List<TopicDto> getAllTopic() {
+    public ResponseEntity<List<TopicDto>> getAllTopic() {
         List<TopicDto> topicDtoList = topicService.getAllTopic();
         System.out.println("topicDtoList::" + topicDtoList.toString());
-        return topicDtoList;
+        return new ResponseEntity<>(topicDtoList, HttpStatus.OK);
     }
 
     // 토픽 세부 조회
     @RequestMapping(method = RequestMethod.GET, value = "getTopic/{id}")
-    public TopicDto getTopic(@PathVariable Long id) {
+    public ResponseEntity<TopicDto> getTopic(@PathVariable Long id) {
         TopicDto topicDto = topicService.findById(id);
         System.out.println("가져옴: "+topicDto.toString());
-        return topicDto;
+        return new ResponseEntity<>(topicDto, HttpStatus.OK);
     }
 
     // 토픽 삭제
     @RequestMapping(method = RequestMethod.DELETE, value = "delete/{id}")
-    public String deleteTopic(@PathVariable Long id){
-        topicService.deleteTopic(id);
-        return "redirect:/";
+    public ResponseEntity<String> deleteTopic(@PathVariable Long id){
+        Long topicId = topicService.deleteTopic(id);
+        return new ResponseEntity<>(topicId.toString()+":토픽 삭제 성공", HttpStatus.OK);
     }
 
     // 토픽 수정
     @RequestMapping(method = RequestMethod.POST, value = "edit/{id}")
-    public ResponseEntity<Long> update(@PathVariable Long id, TopicDto topicDto) {
+    public ResponseEntity<String> update(@PathVariable Long id, TopicDto topicDto) {
         System.out.println("수정 : "+topicDto.toString());
         if(topicService.checkTopicName(topicDto.getTopicName())){
-            return new ResponseEntity<>(0l, HttpStatusCode.valueOf(500));
+            return new ResponseEntity<>("토픽명 중복", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         Long topicId = topicService.updateTopic(id, topicDto);
-        return new ResponseEntity<>(topicId, HttpStatus.OK);
+        return new ResponseEntity<>(topicId.toString()+":토픽 수정 성공", HttpStatus.OK);
     }
 
 }
