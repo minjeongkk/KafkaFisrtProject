@@ -26,17 +26,17 @@ public class Producer {
         Random random = new Random();
         // topic으로 message 전달
         while (true) {
-            String message = Integer.toString(random.nextInt(10000)); // 1~10000 중 랜덤숫자
+            String message = String.valueOf(((int)(Math.random()*10000))); // 1~10000 중 랜덤숫자
             kafkaProducer.send(new ProducerRecord<>("number", message));
 
             String message2 = String.valueOf((char) ((int) (Math.random() * 26) + 65)); // 랜덤한 대문자
-            kafkaProducer.send(new ProducerRecord<>("newTopic", message2));
+            kafkaProducer.send(new ProducerRecord<>("uppercase", message2));
 
             String message3 = String.valueOf((char) ((int) (Math.random() * 26) + 97)); // 랜덤한 소문자
-            kafkaProducer.send(new ProducerRecord<>("food", message3));
+            kafkaProducer.send(new ProducerRecord<>("lowercase", message3));
 
             String message4 = String.valueOf((char) ((int) (Math.random() * 14) + 33)); // 랜덤한 기호
-            kafkaProducer.send(new ProducerRecord<>("testTopic", message4));
+            kafkaProducer.send(new ProducerRecord<>("specialSymbol", message4));
 
             Thread.sleep(1000); // 1초
         }
