@@ -39,18 +39,27 @@ $(document).ready(function () {
 
 function subscribeTopic(id) {
     var sendId = parseInt(id.split('_')[0])
+    $("#" + sendId + "_status").css("color", "green");
+    $("#" + sendId + "_status").text("RUNNING");
+    $("#" + sendId).css('background-color', '#ffffff');
     $.ajax({
-        url: "subscribe/" + sendId,
+        url: "checkServer/" + sendId,
         success: function (result) {
             console.log(result);
-            $("#" + sendId + "_status").css("color", "green");
-            $("#" + sendId + "_status").text("RUNNING");
-            $("#" + sendId).css('background-color', '#ffffff');
+            $.ajax({
+                url: "subscribe/" + sendId,
+                success: function (result) {
+                    console.log(result);
+                }
+            })
         },
         error: function (error) {
             console.log(error);
             if (error.status == 404) {
                 alert("구독할 수 없습니다.");
+                $("#" + sendId + "_status").css("color", "red");
+                $("#" + sendId + "_status").text("STOPPED");
+                $("#" + sendId).css('background-color', '#e8e8e8');
             }
         }
     })

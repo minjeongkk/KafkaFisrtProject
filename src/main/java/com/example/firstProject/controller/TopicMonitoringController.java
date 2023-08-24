@@ -25,20 +25,27 @@ public class TopicMonitoringController {
         this.topicService = topicService;
     }
 
+    // 서버 확인
+    @GetMapping("/checkServer/{id}")
+    public ResponseEntity<String> checkServer(@PathVariable Long id){
+        TopicDto topicDto = topicService.findById(id);
+
+        // 서버 작동
+        boolean isChecked = consumer.checkServer(topicDto.getIp(), topicDto.getPort().toString());
+        if (isChecked) {
+            return new ResponseEntity<>(id.toString() + ":ok", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(id.toString() + ":not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
     // 구독
     @GetMapping("/subscribe/{id}")
     public ResponseEntity<String> subscribe(@PathVariable Long id) {
         TopicDto topicDto = topicService.findById(id);
-
         // 구독 (ip, port, topic이름 전달)
-        boolean isSubscribed = consumer.subscribe(id, topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
-        if (isSubscribed) {
-            // 토픽 상태 Running으로 변경
-            topicService.updateStatus(id, topicDto, Status.Running);
-            return new ResponseEntity<>(id.toString() + ":subscribe", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(id.toString() + ":can't subscribe", HttpStatus.NOT_FOUND);
-        }
+        consumer.subscribe(id, topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
+        return new ResponseEntity<>(id.toString() + ":subscribe", HttpStatus.OK);
     }
 
     // 조회

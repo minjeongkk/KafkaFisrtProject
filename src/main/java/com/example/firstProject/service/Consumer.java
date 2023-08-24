@@ -20,8 +20,27 @@ public class Consumer {
         System.out.println("1111111111");
     }
 
+    // 서버 확인
+    public boolean checkServer(String ip, String port){
+        String bootstrapServerIp = ip;
+        String bootstrapServerPort = port;
+
+        // 카프카 정보
+        Map<String, Object> kafkaParams = new HashMap<>();
+        kafkaParams.put("bootstrap.servers", bootstrapServerIp + ":" + bootstrapServerPort);
+
+        try {
+            AdminClient client = AdminClient.create(kafkaParams);
+            client.describeCluster().nodes().get(5, TimeUnit.SECONDS);
+        } catch (TimeoutException | InterruptedException | ExecutionException e) {
+//            System.out.printf(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
     // 구독
-    public boolean subscribe(Long id, String ip, String port, String topic) {
+    public void subscribe(Long id, String ip, String port, String topic) {
         String bootstrapServerIp = ip;
         String bootstrapServerPort = port;
         String topicName = topic;
@@ -35,20 +54,9 @@ public class Consumer {
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 
-        try {
-            AdminClient client = AdminClient.create(properties);
-            client.describeCluster().nodes().get(5, TimeUnit.SECONDS);
-        } catch (TimeoutException | InterruptedException | ExecutionException e) {
-//            System.out.printf(e.getMessage());
-            return false;
-        }
-
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
         consumer.subscribe(Arrays.asList(topicName));
         consumers.put(id, consumer);
-        return true;
-
-//        ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
     }
 
     // 조회
