@@ -4,7 +4,6 @@ import com.example.firstProject.dto.TopicDto;
 import com.example.firstProject.entity.Status;
 import com.example.firstProject.service.*;
 import lombok.RequiredArgsConstructor;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,18 +12,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
-import java.util.HashMap;
-import java.util.Map;
-
 
 @RestController
 @RequiredArgsConstructor
-public class TopicMonitoringTestController {
+public class RealtimeTopicMonitoringController {
     private SparkStreaming sparkStreaming;
     private TopicService topicService;
 
     @Autowired
-    public TopicMonitoringTestController(SparkStreaming sparkStreaming, TopicService topicService) {
+    public RealtimeTopicMonitoringController(SparkStreaming sparkStreaming, TopicService topicService) {
         this.sparkStreaming = sparkStreaming;
         this.topicService = topicService;
     }
