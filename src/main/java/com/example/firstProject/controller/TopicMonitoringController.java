@@ -45,6 +45,7 @@ public class TopicMonitoringController {
         TopicDto topicDto = topicService.findById(id);
         // 구독 (ip, port, topic이름 전달)
         consumer.subscribe(id, topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
+        topicService.updateStatus(id, topicDto, Status.Running);
         return new ResponseEntity<>(id.toString() + ":subscribe", HttpStatus.OK);
     }
 
