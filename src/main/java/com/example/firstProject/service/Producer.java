@@ -23,7 +23,6 @@ public class Producer {
         // producer 객체 생성
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(properties);
 
-        Random random = new Random();
         // topic으로 message 전달
         while (true) {
             String message = String.valueOf(((int)(Math.random()*10000))); // 1~10000 중 랜덤숫자

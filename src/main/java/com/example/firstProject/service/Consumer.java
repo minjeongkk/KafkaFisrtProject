@@ -16,9 +16,7 @@ import java.util.concurrent.TimeoutException;
 public class Consumer {
     private static Map<Long, KafkaConsumer<String, String>> consumers = new HashMap<Long, KafkaConsumer<String, String>>();
 
-    public Consumer() {
-        System.out.println("1111111111");
-    }
+    public Consumer() {}
 
     // 서버 확인
     public boolean checkServer(String ip, String port){

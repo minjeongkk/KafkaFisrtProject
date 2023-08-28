@@ -36,7 +36,6 @@ public class SparkStreaming implements Serializable {
         conf = new SparkConf().setAppName("kafka-spark").setMaster("local[2]");
         ctx = JavaSparkContext.fromSparkContext(SparkContext.getOrCreate(conf));
         streamingContext = new JavaStreamingContext(ctx, Durations.seconds(1));
-        System.out.println("2222222222");
     }
 
     public boolean checkServer(String ip, String port){
