@@ -25,7 +25,7 @@ public class Producer {
 
         // topic으로 message 전달
         while (true) {
-            String message = String.valueOf(((int)(Math.random()*10000))); // 1~10000 중 랜덤숫자
+            String message = String.valueOf(((int) (Math.random() * 10000))); // 1~10000 중 랜덤숫자
             kafkaProducer.send(new ProducerRecord<>("number", message));
 
             String message2 = String.valueOf((char) ((int) (Math.random() * 26) + 65)); // 랜덤한 대문자

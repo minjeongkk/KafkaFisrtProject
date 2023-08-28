@@ -4,9 +4,9 @@ $(document).ready(function () {
         success: function (result) {
             console.log(result);
             $("#monitoringTable").empty();
-            var html = "";
+            let html = "";
             result.forEach(function (item) {
-                var setStatus = "STOPPED";
+                let setStatus = "STOPPED";
                 if (item.status == 'Running') {
                     setStatus = "RUNNING";
                 }
@@ -29,7 +29,7 @@ $(document).ready(function () {
                 if ($("#" + item.id).text() == 'RUNNING') {
                     $("#" + item.id).attr('style', 'color: green');
                 } else {
-                    var id = item.id.split("_")[0];
+                    let id = item.id.split("_")[0];
                     $("#" + id).css('background-color', '#e8e8e8');
                 }
             });
@@ -38,7 +38,7 @@ $(document).ready(function () {
 });
 
 function subscribeTopic(id) {
-    var sendId = parseInt(id.split('_')[0])
+    let sendId = parseInt(id.split('_')[0])
     $("#" + sendId + "_status").css("color", "green");
     $("#" + sendId + "_status").text("RUNNING");
     $("#" + sendId).css('background-color', '#ffffff');
@@ -71,7 +71,7 @@ function subscribeTopic(id) {
 }
 
 function stopTopic(id) {
-    var sendId = parseInt(id.split('_')[0])
+    let sendId = parseInt(id.split('_')[0])
     if ($("#" + sendId + "_status").text() == "RUNNING") {
         $.ajax({
             type: "POST",
@@ -96,14 +96,14 @@ function stopTopic(id) {
 }
 
 function searchTopic(id) {
-    var sendId = parseInt(id.split('_')[0])
+    let sendId = parseInt(id.split('_')[0])
     if ($("#" + sendId + "_status").text() == "RUNNING") {
         $.ajax({
             url: "getData/" + sendId,
             success: function (result) {
                 console.log(result);
-                var html = "";
-                var tableHtml = "<table class='table MonitoringListTable'>" +
+                let html = "";
+                let tableHtml = "<table class='table MonitoringListTable'>" +
                     "<thead class='thead-light'>" +
                     "<tr class='text-center'>" +
                     "<th scope='col'>No.</th>" +
@@ -116,11 +116,11 @@ function searchTopic(id) {
                 $("#" + sendId + "_table").append(tableHtml);
                 if (result.length > 0) {
                     $("#" + sendId + "_listArea").empty();
-                    var len = 0;
+                    let len = 0;
                     if (result.length >= 6) {
                         len = result.length - 6;
                     }
-                    for (var i = result.length - 1; i >= len; i--) {
+                    for (let i = result.length - 1; i >= len; i--) {
                         html += "<tr> <td> # </td><td>" + result[i] + "</td></tr>";
                     }
                 }

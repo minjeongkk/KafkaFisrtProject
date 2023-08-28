@@ -2,7 +2,7 @@ var num = "";
 
 function tableClick(no) {
     $("table tbody tr").css("background-color", "white");
-    console.log("선택:"+no);
+    console.log("선택:" + no);
     num = no;
     $("#" + no).css("background-color", "lightgray");
 }
@@ -13,7 +13,7 @@ $(document).ready(function () {
         success: function (result) {
             console.log(result);
             $("#listArea").empty();
-            var html = "";
+            let html = "";
             result.forEach(function (item) {
                 html += "<tr onclick='tableClick(" + item.id + ")' id='" + item.id + "'> <td>" + item.topicName + "</td><td>"
                     + item.monitoringName + "</td><td>" + item.ip + "</td><td>" + item.port + "</td><td>" + item.status + "</td></tr>";
@@ -31,7 +31,7 @@ $(document).ready(function () {
                 || $("#inputIP").val().trim() == "" || $("#inputPort").val().trim() == "") {
                 alert("값을 입력해주세요.");
             } else {
-                var form = $(this);
+                let form = $(this);
                 $.ajax({
                     type: "POST",
                     url: "saveTopic",
@@ -99,7 +99,7 @@ $(document).ready(function () {
                                 || $("#editIP").val().trim() == "" || $("#editPort").val().trim() == "") {
                                 alert("값을 입력해주세요.");
                             } else {
-                                var form = $(this);
+                                let form = $(this);
 
                                 $.ajax({
                                     type: "POST",

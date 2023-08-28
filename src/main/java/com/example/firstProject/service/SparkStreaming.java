@@ -32,13 +32,13 @@ public class SparkStreaming implements Serializable {
     private JavaSparkContext ctx;
     private JavaStreamingContext streamingContext;
 
-    public SparkStreaming(){
+    public SparkStreaming() {
         conf = new SparkConf().setAppName("kafka-spark").setMaster("local[2]");
         ctx = JavaSparkContext.fromSparkContext(SparkContext.getOrCreate(conf));
         streamingContext = new JavaStreamingContext(ctx, Durations.seconds(1));
     }
 
-    public boolean checkServer(String ip, String port){
+    public boolean checkServer(String ip, String port) {
         String bootstrapServerIp = ip;
         String bootstrapServerPort = port;
 
@@ -53,7 +53,6 @@ public class SparkStreaming implements Serializable {
 //            System.out.printf(e.getMessage());
             return false;
         }
-
         return true;
     }
 
@@ -75,7 +74,7 @@ public class SparkStreaming implements Serializable {
 
                 // 카프카 정보
                 Map<String, Object> kafkaParams = new HashMap<>();
-                kafkaParams.put("bootstrap.servers", bootstrapServerIp+":"+bootstrapServerPort);
+                kafkaParams.put("bootstrap.servers", bootstrapServerIp + ":" + bootstrapServerPort);
                 kafkaParams.put("key.deserializer", StringDeserializer.class);
                 kafkaParams.put("value.deserializer", StringDeserializer.class);
                 kafkaParams.put("group.id", GROUP_ID);

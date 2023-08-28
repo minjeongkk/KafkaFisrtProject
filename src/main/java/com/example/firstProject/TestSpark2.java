@@ -45,9 +45,9 @@ public class TestSpark2 {
 
         // 데이터 연산 및 출력
 //        stream.map(record -> record.value()).print();
-        stream.foreachRDD(rdd-> {
-            rdd.foreach( record ->
-                System.out.println("number : "+ record.value()));
+        stream.foreachRDD(rdd -> {
+            rdd.foreach(record ->
+                    System.out.println("number : " + record.value()));
         });
 
         streamingContext.start();

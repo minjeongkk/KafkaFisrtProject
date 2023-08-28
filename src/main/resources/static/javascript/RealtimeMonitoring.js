@@ -1,5 +1,5 @@
 function subscribeTopic2(id) {
-    var sendId = parseInt(id.split('_')[0]);
+    let sendId = parseInt(id.split('_')[0]);
     $("#" + sendId + "_status").css("color", "green");
     $("#" + sendId + "_status").text("RUNNING");
     $("#" + sendId).css('background-color', '#ffffff');
@@ -8,7 +8,7 @@ function subscribeTopic2(id) {
         url: "checkServer1/" + sendId,
         success: async function (result) {
             console.log(result);
-            var tableHtml = "<table class='table MonitoringListTable'>" +
+            let tableHtml = "<table class='table MonitoringListTable'>" +
                 "<thead class='thead-light'>" +
                 "<tr class='text-center'>" +
                 "<th scope='col'>No.</th>" +
@@ -26,8 +26,8 @@ function subscribeTopic2(id) {
             while (true) {
                 const {value, done} = await reader.read();
                 if (done) break;
-                var html = "";
-                var text = "";
+                let html = "";
+                let text = "";
                 value.forEach(value1 =>
                     text += String.fromCharCode(value1)
                 )
@@ -54,7 +54,7 @@ function subscribeTopic2(id) {
 }
 
 function stopTopic2(id) {
-    var sendId = parseInt(id.split('_')[0])
+    let sendId = parseInt(id.split('_')[0])
     if ($("#" + sendId + "_status").text() == "RUNNING") {
         $.ajax({
             url: "stop1/" + sendId,

@@ -21,7 +21,6 @@ public class TopicSettingController {
     // 토픽 저장
     @RequestMapping(method = RequestMethod.POST, value = "/saveTopic")
     public ResponseEntity<String> saveTopic(TopicDto topicDto) {
-        System.out.println(topicDto.toString());
         if (topicService.checkTopicName(topicDto.getTopicName())) {
             return new ResponseEntity<>("토픽명 중복", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -33,7 +32,6 @@ public class TopicSettingController {
     @RequestMapping(method = RequestMethod.GET, value = "getAllTopic")
     public ResponseEntity<List<TopicDto>> getAllTopic() {
         List<TopicDto> topicDtoList = topicService.getAllTopic();
-        System.out.println("topicDtoList::" + topicDtoList.toString());
         return new ResponseEntity<>(topicDtoList, HttpStatus.OK);
     }
 
@@ -41,7 +39,6 @@ public class TopicSettingController {
     @RequestMapping(method = RequestMethod.GET, value = "getTopic/{id}")
     public ResponseEntity<TopicDto> getTopic(@PathVariable Long id) {
         TopicDto topicDto = topicService.findById(id);
-        System.out.println("가져옴: " + topicDto.toString());
         return new ResponseEntity<>(topicDto, HttpStatus.OK);
     }
 
@@ -55,7 +52,6 @@ public class TopicSettingController {
     // 토픽 수정
     @RequestMapping(method = RequestMethod.POST, value = "edit/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, TopicDto topicDto) {
-        System.out.println("수정 : " + topicDto.toString());
         if (topicService.checkTopicName(topicDto.getTopicName())) {
             return new ResponseEntity<>("토픽명 중복", HttpStatus.INTERNAL_SERVER_ERROR);
         }

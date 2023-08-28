@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ResourceConfig {
     @Bean
-    public Consumer consumer(){
+    public Consumer consumer() {
         return new Consumer();
     }
 
     @Bean
-    public SparkStreaming sparkStreaming(){
+    public SparkStreaming sparkStreaming() {
         return new SparkStreaming();
     }
 }

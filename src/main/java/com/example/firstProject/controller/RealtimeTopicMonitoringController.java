@@ -27,7 +27,7 @@ public class RealtimeTopicMonitoringController {
 
     // 서버 확인
     @GetMapping("/checkServer1/{id}")
-    public ResponseEntity<String> checkServer(@PathVariable Long id){
+    public ResponseEntity<String> checkServer(@PathVariable Long id) {
         TopicDto topicDto = topicService.findById(id);
 
         // 서버 작동
