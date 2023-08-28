@@ -47,7 +47,12 @@ function subscribeTopic(id) {
         success: function (result) {
             console.log(result);
             $.ajax({
+                type: "POST",
                 url: "subscribe/" + sendId,
+                dataType: "json",
+                data: {
+                    id: sendId
+                },
                 success: function (result) {
                     console.log(result);
                 }
@@ -69,13 +74,20 @@ function stopTopic(id) {
     var sendId = parseInt(id.split('_')[0])
     if ($("#" + sendId + "_status").text() == "RUNNING") {
         $.ajax({
+            type: "POST",
             url: "stop/" + sendId,
+            data: {
+                id: sendId
+            },
             success: function (result) {
                 console.log(result);
                 $("#" + sendId + "_status").css("color", "red");
                 $("#" + sendId + "_status").text("STOPPED");
                 $("#" + sendId).css('background-color', '#e8e8e8');
                 $("#" + sendId + "_table").empty();
+            },
+            error: function (error) {
+                console.log(error);
             }
         })
     } else {

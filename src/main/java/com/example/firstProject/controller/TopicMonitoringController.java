@@ -40,11 +40,12 @@ public class TopicMonitoringController {
     }
 
     // 구독
-    @GetMapping("/subscribe/{id}")
+    @PostMapping("/subscribe/{id}")
     public ResponseEntity<String> subscribe(@PathVariable Long id) {
         TopicDto topicDto = topicService.findById(id);
         // 구독 (ip, port, topic이름 전달)
         consumer.subscribe(id, topicDto.getIp(), topicDto.getPort().toString(), topicDto.getTopicName());
+        // topic 상태 변경
         topicService.updateStatus(id, topicDto, Status.Running);
         return new ResponseEntity<>(id.toString() + ":subscribe", HttpStatus.OK);
     }
@@ -56,7 +57,7 @@ public class TopicMonitoringController {
     }
 
     // 중지
-    @GetMapping("/stop/{id}")
+    @PostMapping("/stop/{id}")
     public ResponseEntity<String> stop(@PathVariable Long id) {
         // 구독 중지
         consumer.stop(id);
