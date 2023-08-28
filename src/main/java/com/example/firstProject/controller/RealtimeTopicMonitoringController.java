@@ -3,6 +3,7 @@ package com.example.firstProject.controller;
 import com.example.firstProject.dto.TopicDto;
 import com.example.firstProject.entity.Status;
 import com.example.firstProject.service.*;
+import com.example.firstProject.spark.SparkStreaming;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

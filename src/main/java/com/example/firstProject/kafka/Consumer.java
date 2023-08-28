@@ -1,4 +1,4 @@
-package com.example.firstProject.service;
+package com.example.firstProject.kafka;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

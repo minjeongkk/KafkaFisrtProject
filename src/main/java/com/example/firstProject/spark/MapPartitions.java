@@ -1,4 +1,4 @@
-package com.example.firstProject.service;
+package com.example.firstProject.spark;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.spark.api.java.function.FlatMapFunction;

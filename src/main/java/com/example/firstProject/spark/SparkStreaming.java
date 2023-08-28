@@ -1,4 +1,4 @@
-package com.example.firstProject.service;
+package com.example.firstProject.spark;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -7,11 +7,8 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.FlatMapFunction;
-import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.VoidFunction2;
 import org.apache.spark.streaming.Durations;
-import org.apache.spark.streaming.StreamingContextState;
 import org.apache.spark.streaming.Time;
 import org.apache.spark.streaming.api.java.JavaInputDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
@@ -25,7 +22,6 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.stream.StreamSupport;
 
 public class SparkStreaming implements Serializable {
     private SparkConf conf;

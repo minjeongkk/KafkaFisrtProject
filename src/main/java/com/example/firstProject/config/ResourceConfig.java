@@ -1,7 +1,7 @@
 package com.example.firstProject.config;
 
-import com.example.firstProject.service.Consumer;
-import com.example.firstProject.service.SparkStreaming;
+import com.example.firstProject.kafka.Consumer;
+import com.example.firstProject.spark.SparkStreaming;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
