@@ -1,23 +1,20 @@
-package com.example.firstProject;
+package com.example.firstProject.spark;
 
-import com.google.gson.internal.bind.JsonTreeReader;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.spark.SparkConf;
 import org.apache.spark.streaming.Durations;
 import org.apache.spark.streaming.api.java.*;
 import org.apache.spark.streaming.kafka010.ConsumerStrategies;
 import org.apache.spark.streaming.kafka010.KafkaUtils;
 import org.apache.spark.streaming.kafka010.LocationStrategies;
-import scala.Tuple2;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestSpark2 {
+public class Spark {
     public static void main(String[] args) throws Exception {
         // 스파크 초기화
         // 로컬 Streaming Context 생성, 배치 간격 1초
