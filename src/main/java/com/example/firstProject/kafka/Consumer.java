@@ -61,16 +61,13 @@ public class Consumer {
     // 조회
     public List getData(Long id) {
         // 데이터를 받아서 출력
-        try {
-            ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
-            List list = new ArrayList<>();
-            for (ConsumerRecord<String, String> record : records) {
-                System.out.println(record.value());
-                list.add(record.value());
-            }
-            return list;
-        } finally {
+        ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
+        List list = new ArrayList<>();
+        for (ConsumerRecord<String, String> record : records) {
+            System.out.println(record.value());
+            list.add(record.value());
         }
+        return list;
     }
 
     // 중지
