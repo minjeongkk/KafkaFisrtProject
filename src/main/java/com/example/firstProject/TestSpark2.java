@@ -23,6 +23,7 @@ public class TestSpark2 {
         // 로컬 Streaming Context 생성, 배치 간격 1초
         SparkConf conf = new SparkConf().setAppName("kafka-spark").setMaster("local[2]");
         JavaStreamingContext streamingContext = new JavaStreamingContext(conf, Durations.seconds(1));
+        streamingContext.sparkContext().setLogLevel("WARN");
 
         // 카프카 정보
         Map<String, Object> kafkaParams = new HashMap<>();
