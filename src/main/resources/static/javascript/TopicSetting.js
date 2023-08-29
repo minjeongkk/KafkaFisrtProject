@@ -57,12 +57,23 @@ $(document).ready(function () {
             alert("항목을 선택해주세요.");
         } else {
             $.ajax({
-                url: "delete/" + num,
-                type: "DELETE",
+                url: "getTopic/" + num,
+                type: "GET",
                 success: function (result) {
                     console.log(result);
-                    alert("삭제되었습니다.");
-                    $("#page").load("TopicSetting");
+                    if (result.status == "Running") {
+                        alert("구독 중에는 삭제할 수 없습니다.");
+                    } else {
+                        $.ajax({
+                            url: "delete/" + num,
+                            type: "DELETE",
+                            success: function (result) {
+                                console.log(result);
+                                alert("삭제되었습니다.");
+                                $("#page").load("TopicSetting");
+                            }
+                        })
+                    }
                 }
             })
         }
