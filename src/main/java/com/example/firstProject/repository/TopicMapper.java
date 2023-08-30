@@ -1,6 +1,5 @@
 package com.example.firstProject.repository;
 
-import com.example.firstProject.dto.TopicDto;
 import com.example.firstProject.entity.Topic;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

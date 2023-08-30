@@ -16,9 +16,6 @@ import java.util.concurrent.TimeoutException;
 public class Consumer {
     private static Map<Long, KafkaConsumer<String, String>> consumers = new HashMap<Long, KafkaConsumer<String, String>>();
 
-    public Consumer() {
-    }
-
     // 서버 확인
     public boolean checkServer(String ip, String port) {
         String bootstrapServerIp = ip;
@@ -32,7 +29,6 @@ public class Consumer {
             AdminClient client = AdminClient.create(kafkaParams);
             client.describeCluster().nodes().get(5, TimeUnit.SECONDS);
         } catch (TimeoutException | InterruptedException | ExecutionException e) {
-//            System.out.printf(e.getMessage());
             return false;
         }
         return true;
@@ -69,7 +65,6 @@ public class Consumer {
         ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
         List list = new ArrayList<>();
         for (ConsumerRecord<String, String> record : records) {
-            System.out.println(record.value());
             list.add(record.value());
         }
         return list;

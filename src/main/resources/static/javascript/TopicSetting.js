@@ -1,5 +1,5 @@
 // 표에서 선택한 토픽의 고유 id
-var num = "";
+let num = "";
 
 // 선택한 항목 id 저장, 클릭 효과
 function tableClick(no) {
@@ -131,7 +131,7 @@ $(document).ready(function () {
             } else {
                 $.ajax({
                     type: "POST",
-                    url: "edit/"+num,
+                    url: "edit/" + num,
                     data: {
                         topicName: $("#editTopic").val(),
                         monitoringName: $("#editMonitoring").val(),

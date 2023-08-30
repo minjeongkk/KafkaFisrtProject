@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Spark {
+public class SparkStreamingTest {
     public static void main(String[] args) throws Exception {
         // 스파크 초기화
         // 로컬 Streaming Context 생성, 배치 간격 1초

@@ -136,13 +136,12 @@ function searchTopic(id) {
 }
 
 // 구독 상태에 따라 모니터링 화면 변경
-function changeMonitoringScreen(id, type){
-    if (type == 1){
+function changeMonitoringScreen(id, type) {
+    if (type == 1) {
         $("#" + id + "_status").css("color", "green");
         $("#" + id + "_status").text("RUNNING");
         $("#" + id).css('background-color', '#ffffff');
-    }
-    else if (type == 2){
+    } else if (type == 2) {
         $("#" + id + "_status").css("color", "red");
         $("#" + id + "_status").text("STOPPED");
         $("#" + id).css('background-color', '#e8e8e8');
