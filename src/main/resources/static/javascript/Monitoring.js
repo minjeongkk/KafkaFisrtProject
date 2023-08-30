@@ -29,11 +29,11 @@ $(document).ready(function () {
             // 상태에 따라 모니터링 화면 설정
             $('[id*=status]').each(function (index, item) {
                 console.log(item);
+                let id = item.id.split("_")[0];
                 if ($("#" + item.id).text() == 'RUNNING') {
-                    $("#" + item.id).attr('style', 'color: green');
+                    changeMonitoringScreen(item.id, 1);
                 } else {
-                    let id = item.id.split("_")[0];
-                    $("#" + id).css('background-color', '#e8e8e8');
+                    changeMonitoringScreen(id, 2);
                 }
             });
         }
@@ -43,9 +43,7 @@ $(document).ready(function () {
 // 토픽 구독
 function subscribeTopic(id) {
     let sendId = parseInt(id.split('_')[0])
-    $("#" + sendId + "_status").css("color", "green");
-    $("#" + sendId + "_status").text("RUNNING");
-    $("#" + sendId).css('background-color', '#ffffff');
+    changeMonitoringScreen(sendId, 1);
 
     // 서버 확인
     $.ajax({
@@ -69,9 +67,7 @@ function subscribeTopic(id) {
             console.log(error);
             if (error.status == 404) {
                 alert("구독할 수 없습니다.");
-                $("#" + sendId + "_status").css("color", "red");
-                $("#" + sendId + "_status").text("STOPPED");
-                $("#" + sendId).css('background-color', '#e8e8e8');
+                changeMonitoringScreen(sendId, 2);
             }
         }
     })
@@ -89,10 +85,7 @@ function stopTopic(id) {
             },
             success: function (result) {
                 console.log(result);
-                $("#" + sendId + "_status").css("color", "red");
-                $("#" + sendId + "_status").text("STOPPED");
-                $("#" + sendId).css('background-color', '#e8e8e8');
-                $("#" + sendId + "_table").empty();
+                changeMonitoringScreen(sendId, 2);
             },
             error: function (error) {
                 console.log(error);
@@ -139,5 +132,20 @@ function searchTopic(id) {
         })
     } else {
         alert("구독하지 않은 토픽입니다.");
+    }
+}
+
+// 구독 상태에 따라 모니터링 화면 변경
+function changeMonitoringScreen(id, type){
+    if (type == 1){
+        $("#" + id + "_status").css("color", "green");
+        $("#" + id + "_status").text("RUNNING");
+        $("#" + id).css('background-color', '#ffffff');
+    }
+    else if (type == 2){
+        $("#" + id + "_status").css("color", "red");
+        $("#" + id + "_status").text("STOPPED");
+        $("#" + id).css('background-color', '#e8e8e8');
+        $("#" + id + "_table").empty();
     }
 }
