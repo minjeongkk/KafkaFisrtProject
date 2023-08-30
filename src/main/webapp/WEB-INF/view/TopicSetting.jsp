@@ -66,7 +66,7 @@
                 </div>
                 <div class="row">
                     <div class="col-auto">
-                        <button class="button" id="saveBtn" type="submit" role="button" value="Save">Save
+                        <button class="button" id="saveBtn" type="button" role="button" value="Save">Save
                         </button>
                         <button class="button" id="saveCancelBtn" type="button" role="button" value="Cancel">Cancel
                         </button>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="row">
                     <div class="col-auto">
-                        <button class="button" id="editBtn" type="submit" role="button" value="Save">Save
+                        <button class="button" id="editBtn" type="button" role="button" value="Save">Save
                         </button>
                         <button class="button" id="editCancelBtn" type="button" role="button" value="Cancel">Cancel
                         </button>
