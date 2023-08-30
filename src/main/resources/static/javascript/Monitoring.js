@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    // db에 저장된 토픽 수만큼 모니터링 화면 생성
     $.ajax({
         url: "getAllTopic",
         success: function (result) {
@@ -24,6 +25,8 @@ $(document).ready(function () {
                     "</div>";
             })
             $("#monitoringTable").append(html);
+
+            // 상태에 따라 모니터링 화면 설정
             $('[id*=status]').each(function (index, item) {
                 console.log(item);
                 if ($("#" + item.id).text() == 'RUNNING') {
@@ -37,15 +40,19 @@ $(document).ready(function () {
     })
 });
 
+// 토픽 구독
 function subscribeTopic(id) {
     let sendId = parseInt(id.split('_')[0])
     $("#" + sendId + "_status").css("color", "green");
     $("#" + sendId + "_status").text("RUNNING");
     $("#" + sendId).css('background-color', '#ffffff');
+
+    // 서버 확인
     $.ajax({
         url: "checkServer/" + sendId,
         success: function (result) {
             console.log(result);
+            // 토픽 구독
             $.ajax({
                 type: "POST",
                 url: "subscribe/" + sendId,
@@ -70,6 +77,7 @@ function subscribeTopic(id) {
     })
 }
 
+// 구독이 된 상태에서 누르면 구독 중지
 function stopTopic(id) {
     let sendId = parseInt(id.split('_')[0])
     if ($("#" + sendId + "_status").text() == "RUNNING") {
@@ -95,9 +103,11 @@ function stopTopic(id) {
     }
 }
 
+// 구독이 된 상태에서 누르면 조회
 function searchTopic(id) {
     let sendId = parseInt(id.split('_')[0])
     if ($("#" + sendId + "_status").text() == "RUNNING") {
+        // 데이터를 받아와 표로 출력
         $.ajax({
             url: "getData/" + sendId,
             success: function (result) {

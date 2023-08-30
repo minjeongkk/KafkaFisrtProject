@@ -53,14 +53,19 @@ public class Consumer {
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 
+        // consumer 객체 생성
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
+
+        // 토픽 구독
         consumer.subscribe(Arrays.asList(topicName));
+
+        // hashmap에 저장
         consumers.put(id, consumer);
     }
 
     // 조회
     public List getData(Long id) {
-        // 데이터를 받아서 출력
+        // 데이터를 받아서 리스트로 반환
         ConsumerRecords<String, String> records = consumers.get(id).poll(Duration.ofSeconds(1));
         List list = new ArrayList<>();
         for (ConsumerRecord<String, String> record : records) {
@@ -72,7 +77,10 @@ public class Consumer {
 
     // 중지
     public void stop(Long id) {
+        // 구독 중지
         consumers.get(id).close();
+
+        // hashmap에서 삭제
         consumers.remove(id);
     }
 }

@@ -20,7 +20,7 @@ public class TopicService {
     // 토픽 저장
     @Transactional
     public Long saveTopic(TopicDto topicDto) {
-        topicDto.setStatus(Status.Stopped);
+        topicDto.setStatus(Status.Stopped);                 // 상태는 Stopped로 저장
         return topicMapper.saveTopic(topicDto.toEntity());
     }
 
