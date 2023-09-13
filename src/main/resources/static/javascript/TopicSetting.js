@@ -1,5 +1,5 @@
 // 표에서 선택한 토픽의 고유 id
-let num = "";
+var num = "";
 
 // 선택한 항목 id 저장, 클릭 효과
 function tableClick(no) {
@@ -36,24 +36,7 @@ $(document).ready(function () {
         if (num == "") {
             alert("항목을 선택해주세요.");
         } else {
-            $.ajax({
-                url: "getTopic/" + num,
-                type: "GET",
-                success: function (result) {
-                    console.log(result);
-                    if (result.status == "Running") {
-                        alert("구독 중에는 편집할 수 없습니다.");
-                    } else {
-                        $("#popup_layer_edit").css("display", "block");
-
-                        // 기존값 불러옴
-                        $("#editTopic").val(result.topicName);
-                        $("#editMonitoring").val(result.monitoringName);
-                        $("#editIP").val(result.ip);
-                        $("#editPort").val(result.port);
-                    }
-                }
-            })
+            getEditTopic(num);
         }
     });
 
@@ -63,26 +46,7 @@ $(document).ready(function () {
             alert("항목을 선택해주세요.");
         } else {
             if (confirm("삭제하시겠습니까?")) {
-                $.ajax({
-                    url: "getTopic/" + num,
-                    type: "GET",
-                    success: function (result) {
-                        console.log(result);
-                        if (result.status == "Running") {
-                            alert("구독 중에는 삭제할 수 없습니다.");
-                        } else {
-                            $.ajax({
-                                url: "delete/" + num,
-                                type: "DELETE",
-                                success: function (result) {
-                                    console.log(result);
-                                    alert("삭제되었습니다.");
-                                    $("#page").load("TopicSetting");
-                                }
-                            })
-                        }
-                    }
-                })
+                checkRunningDelete(num);
             }
         }
     });
@@ -95,28 +59,7 @@ $(document).ready(function () {
                 || $("#inputIP").val().trim() == "" || $("#inputPort").val().trim() == "") {
                 alert("값을 입력해주세요.");
             } else {
-                $.ajax({
-                    type: "POST",
-                    url: "saveTopic",
-                    data: {
-                        topicName: $("#inputTopic").val(),
-                        monitoringName: $("#inputMonitoring").val(),
-                        ip: $("#inputIP").val(),
-                        port: $("#inputPort").val()
-                    },
-                    success: function (result) {
-                        console.log(result);
-                        $("#popup_layer_new").css("display", "none");
-                        $("#page").load("TopicSetting");
-                    },
-                    error: function (error) {
-                        console.log("실패:" + error.status);
-                        // 토픽명 중복 시 예외처리
-                        if (error.status == 500) {
-                            alert("이미 존재하는 토픽명입니다.");
-                        }
-                    }
-                })
+                saveTopic();
             }
         }
     });
@@ -129,28 +72,7 @@ $(document).ready(function () {
                 || $("#editIP").val().trim() == "" || $("#editPort").val().trim() == "") {
                 alert("값을 입력해주세요.");
             } else {
-                $.ajax({
-                    type: "POST",
-                    url: "edit/" + num,
-                    data: {
-                        topicName: $("#editTopic").val(),
-                        monitoringName: $("#editMonitoring").val(),
-                        ip: $("#editIP").val(),
-                        port: $("#editPort").val()
-                    },
-                    success: function (result) {
-                        console.log(result);
-                        $("#popup_layer_edit").css("display", "none");
-                        $("#page").load("TopicSetting");
-                    },
-                    error: function (error) {
-                        console.log("실패:" + error.status);
-                        // 토픽명 중복 시 예외처리
-                        if (error.status == 500) {
-                            alert("이미 존재하는 토픽명입니다.");
-                        }
-                    }
-                })
+                editTopic(num);
             }
         }
     });
@@ -165,3 +87,101 @@ $(document).ready(function () {
         $("#popup_layer_edit").css("display", "none");
     });
 });
+
+function saveTopic(){
+    $.ajax({
+        type: "POST",
+        url: "saveTopic",
+        data: {
+            topicName: $("#inputTopic").val(),
+            monitoringName: $("#inputMonitoring").val(),
+            ip: $("#inputIP").val(),
+            port: $("#inputPort").val()
+        },
+        success: function (result) {
+            console.log(result);
+            $("#popup_layer_new").css("display", "none");
+            $("#page").load("TopicSetting");
+        },
+        error: function (error) {
+            console.log("실패:" + error.status);
+            // 토픽명 중복 시 예외처리
+            if (error.status == 500) {
+                alert("이미 존재하는 토픽명입니다.");
+            }
+        }
+    })
+}
+
+function editTopic(id){
+    $.ajax({
+        type: "POST",
+        url: "edit/" + id,
+        data: {
+            topicName: $("#editTopic").val(),
+            monitoringName: $("#editMonitoring").val(),
+            ip: $("#editIP").val(),
+            port: $("#editPort").val()
+        },
+        success: function (result) {
+            console.log(result);
+            $("#popup_layer_edit").css("display", "none");
+            $("#page").load("TopicSetting");
+        },
+        error: function (error) {
+            console.log("실패:" + error.status);
+            // 토픽명 중복 시 예외처리
+            if (error.status == 500) {
+                alert("이미 존재하는 토픽명입니다.");
+            }
+        }
+    })
+}
+
+function deleteTopic(id){
+    $.ajax({
+        url: "delete/" + id,
+        type: "DELETE",
+        success: function (result) {
+            console.log(result);
+            alert("삭제되었습니다.");
+            $("#page").load("TopicSetting");
+        }
+    })
+}
+
+function getEditTopic(id){
+    $.ajax({
+        url: "getTopic/" + num,
+        type: "GET",
+        success: function (result) {
+            console.log(result);
+            if (result.status == "Running") {
+                alert("구독 중에는 편집할 수 없습니다.");
+            } else {
+                $("#popup_layer_edit").css("display", "block");
+
+                // 기존값 불러옴
+                $("#editTopic").val(result.topicName);
+                $("#editMonitoring").val(result.monitoringName);
+                $("#editIP").val(result.ip);
+                $("#editPort").val(result.port);
+            }
+        }
+    })
+}
+
+function checkRunningDelete(topicNum){
+    $.ajax({
+        url: "getTopic/" + topicNum,
+        type: "GET",
+        success: function (result) {
+            console.log(result);
+            if (result.status == "Running") {
+                alert("구독 중에는 삭제할 수 없습니다.");
+            } else {
+                deleteTopic(topicNum);
+            }
+        }
+    })
+}
