@@ -16,7 +16,7 @@ $(document).ready(function () {
                     "<span class ='status' id='" + item.id + "_status'>" + setStatus + "</span>" +
                     "<div class='row' id='buttons'>" +
                     " <div class='col-auto'>" +
-                    "<button class='button' id='" + item.id + "_subscribe' type='button' onclick='subscribeTopic(this.id);'>구독</button>" +
+                    "<button class='button' id='" + item.id + "_subscribe' type='button' onclick='checkAndSubscribeTopic(this.id);'>구독</button>" +
                     "<button class='button' id='" + item.id + "_stop' type='button' onclick='stopTopic(this.id);'>중지</button>" +
                     "<button class='button' id='" + item.id + "_search' type='button' onclick='searchTopic(this.id);'>조회</button>" +
                     "</div>" +
@@ -41,7 +41,7 @@ $(document).ready(function () {
 });
 
 // 토픽 구독
-function subscribeTopic(id) {
+function checkAndSubscribeTopic(id) {
     let sendId = parseInt(id.split('_')[0])
     changeMonitoringScreen(sendId, 1);
 
@@ -51,17 +51,7 @@ function subscribeTopic(id) {
         success: function (result) {
             console.log(result);
             // 토픽 구독
-            $.ajax({
-                type: "POST",
-                url: "subscribe/" + sendId,
-                dataType: "json",
-                data: {
-                    id: sendId
-                },
-                success: function (result) {
-                    console.log(result);
-                }
-            })
+            subscribeTopic(sendId);
         },
         error: function (error) {
             console.log(error);
@@ -69,6 +59,20 @@ function subscribeTopic(id) {
                 alert("구독할 수 없습니다.");
                 changeMonitoringScreen(sendId, 2);
             }
+        }
+    })
+}
+
+function subscribeTopic(id){
+    $.ajax({
+        type: "POST",
+        url: "subscribe/" + id,
+        dataType: "json",
+        data: {
+            id: id
+        },
+        success: function (result) {
+            console.log(result);
         }
     })
 }
