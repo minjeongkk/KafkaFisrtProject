@@ -12,7 +12,7 @@
 
 ## ✔개발 환경
 - `JDK 1.8.0`
-- **Framework** : Springboot(3.x)
+- **Framework** : Springboot(2.7)
 - **Database** : postgresql
 - **ORM** : Mybatis
 - kafka
