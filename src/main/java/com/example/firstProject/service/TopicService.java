@@ -90,4 +90,22 @@ public class TopicService {
         topicMapper.updateStatus(topicDto.toEntity());
         return topicDto.getId();
     }
+
+    @Transactional
+    public void saveTemp(TopicDto topicDto) throws JsonProcessingException {
+        if (!checkTopicTemp(topicDto.getUserId())) {
+            topicMapper.deleteTopicTemp(topicDto.getUserId());
+        }
+        TopicTemp topicTemp = new TopicTemp(topicDto.convertToJson(), topicDto.getUserId());
+        topicMapper.saveTemp(topicTemp);
+    }
+
+    public String getTemp(Long userId) {
+        return topicMapper.getTemp(userId);
+    }
+
+    public boolean checkTopicTemp(Long userId) {
+        List<TopicTemp> topicTemp = topicMapper.getTopicTempByUserId(userId);
+        return topicTemp.isEmpty();
+    }
 }

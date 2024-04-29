@@ -30,6 +30,9 @@ public class Topic {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column
+    private Long userId;
+
     @Builder
     public Topic(Long id, String topicName, String monitoringName, String ip, Integer port, Status status) {
         this.id = id;

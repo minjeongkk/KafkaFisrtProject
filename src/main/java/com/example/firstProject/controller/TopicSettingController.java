@@ -28,6 +28,20 @@ public class TopicSettingController {
         return new ResponseEntity<>(topicId.toString() + ":토픽 저장 성공", HttpStatus.OK);
     }
 
+    // 토픽 임시저장
+    @RequestMapping(method = RequestMethod.POST, value = "/saveTopicTemp")
+    public ResponseEntity<String> saveTopicTemp(@RequestBody TopicDto topicDto) throws JsonProcessingException {
+        topicService.saveTemp(topicDto);
+        return new ResponseEntity<>("save temp", HttpStatus.OK);
+    }
+
+    // 토픽 임시저장
+    @RequestMapping(method = RequestMethod.GET, value = "/getTopicTemp/{idx}")
+    public ResponseEntity<String> getTopicTemp(@PathVariable Long idx) {
+        String json = topicService.getTemp(idx);
+        return new ResponseEntity<>(json, HttpStatus.OK);
+    }
+
     // 토픽 전체 조회
     @RequestMapping(method = RequestMethod.GET, value = "getAllTopic")
     public ResponseEntity<List<TopicDto>> getAllTopic() {
