@@ -34,4 +34,22 @@
         SET status = #{topic.status}
         WHERE id = #{topic.id}
     </update>
+    <insert id="saveTemp" parameterType="com.example.firstProject.entity.TopicTemp">
+        INSERT INTO topic_temp(json, user_id)
+        VALUES (#{json}, #{userId})
+    </insert>
+    <select id="getTemp" parameterType="Long" resultType="String">
+        SELECT json
+        FROM topic_temp
+        WHERE user_id = #{userId};
+    </select>
+    <select id="getTopicTempByUserId" parameterType="Long" resultType="com.example.firstProject.entity.TopicTemp">
+        SELECT *
+        FROM topic_temp
+        WHERE user_id = #{userId};
+    </select>
+    <delete id="deleteTopicTemp" parameterType="Long">
+        DELETE FROM topic_temp
+        WHERE user_id = #{userId}
+    </delete>
 </mapper>

@@ -30,4 +30,12 @@ public interface TopicMapper {
 
     // 토픽 상태 수정
     public Long updateStatus(@Param("topic") Topic topic);
+    // 토픽 임시저장
+    public void saveTemp(TopicTemp topicTemp);
+    // 토픽 임시저장 불러오기
+    public  String getTemp(Long userId);
+    // 토픽 임시저장 작성자로 검색하여 불러오기
+    public List<TopicTemp> getTopicTempByUserId(Long userId);
+    // 토픽 임시저장 삭제
+    public void deleteTopicTemp(Long id);
 }

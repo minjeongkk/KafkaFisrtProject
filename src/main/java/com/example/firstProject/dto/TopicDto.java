@@ -3,6 +3,8 @@ package com.example.firstProject.dto;
 
 import com.example.firstProject.entity.Status;
 import com.example.firstProject.entity.Topic;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 
 @Getter
@@ -16,6 +18,7 @@ public class TopicDto {
     private String ip;
     private Integer port;
     private Status status;
+    private Long userId;
 
     public Topic toEntity() {
         Topic topic = Topic.builder()
@@ -37,5 +40,10 @@ public class TopicDto {
         this.ip = ip;
         this.port = port;
         this.status = status;
+    }
+
+    public String convertToJson() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(this);
     }
 }
