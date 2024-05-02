@@ -1,6 +1,7 @@
 package com.example.firstProject.repository;
 
 import com.example.firstProject.entity.Topic;
+import com.example.firstProject.entity.TopicTemp;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

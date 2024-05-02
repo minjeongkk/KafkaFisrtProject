@@ -2,6 +2,7 @@ package com.example.firstProject.controller;
 
 import com.example.firstProject.dto.TopicDto;
 import com.example.firstProject.service.TopicService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
